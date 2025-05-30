@@ -69,10 +69,42 @@
       color: transparent;
     }
     
+    /* Video showcase header */
+    .showcase-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+    
+    .showcase-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%);
+      z-index: 1;
+    }
+    
+    .showcase-content {
+      position: relative;
+      z-index: 2;
+    }
+    
     /* Responsive adjustments */
     @media (max-width: 640px) {
       .movie-card {
         width: calc(50% - 1rem);
+      }
+      .showcase-overlay {
+        background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 100%);
+      }
+      .showcase-content {
+        padding: 1rem;
       }
     }
     
@@ -142,20 +174,25 @@
 
   <!-- Main Content -->
   <main class="container mx-auto px-4 py-8">
-    <!-- Hero Section -->
-    <section class="mb-12 relative overflow-hidden rounded-xl">
-      <div class="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent z-10"></div>
-      <img src="https://sm.ign.com/t/ign_in/news/i/i-am-groot/i-am-groot-disney-release-date-and-poster-revealed_ye3u.1200.jpg" 
-           alt="I Am Groot Banner" class="w-full h-64 md:h-96 object-cover">
-      <div class="absolute bottom-0 left-0 z-20 p-6 md:p-8">
+    <!-- Hero Section with Video Showcase -->
+    <section class="mb-12 relative overflow-hidden rounded-xl h-64 md:h-96">
+      <video autoplay muted loop class="showcase-video">
+        <source src="https://imdb-video.media-imdb.com/vi210224921/1434659607842-pgv4ql-1691413662477.mp4?Expires=1748651981&Signature=r~GMO7btq2Tw9AQZhFlWjo7Iml44Ctke20HsJnUzJ5HtiQ0vRbStwPuUS-ILFgbrj4nDwWy-q0AEHXtwca5Fx5pV3wTP8cOh1~nNkR5rkk3h6NGqf6i~0WsvXlu26j-EIYMq0y9Wd~Q4Qzp5jQdhN~PNCOodrR3SkhRIfOc8gTRySpt5mZXJJvipRt5TRqUCX65XbG9378OkWpRzTbtRDMCGtPqDhoCwCtkMLaEtdH6x4DCi4FFUpkxLdrL1kqRX3kUA4DkTdIOqtqRGyKkYeVrR3JoCZuxg-2EID9TMg0Ugimg4FaEG~tq2Z-2448fgVdtFOgrnCW9W65gH~Fuaqg__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="showcase-overlay"></div>
+      <div class="showcase-content h-full flex flex-col justify-end p-6 md:p-8">
         <h2 class="text-3xl md:text-5xl font-bold mb-2 gradient-text">Seasons 1 & 2</h2>
         <p class="text-gray-300 mb-4 max-w-lg">The complete adventures of Baby Groot. Watch as the adorable Flora Colossus gets into all sorts of mischief across the galaxy.</p>
-        <div class="flex space-x-3">
+        <div class="flex flex-wrap gap-3">
           <button class="bg-yellow-600 hover:bg-yellow-700 text-black font-semibold py-2 px-6 rounded-full transition flex items-center">
             <i class="fas fa-play mr-2"></i> Play All
           </button>
           <button class="bg-gray-800 hover:bg-gray-700 text-white font-semibold py-2 px-6 rounded-full transition flex items-center">
             <i class="fas fa-info-circle mr-2"></i> Details
+          </button>
+          <button class="bg-gray-800 hover:bg-gray-700 text-white font-semibold py-2 px-6 rounded-full transition flex items-center">
+            <i class="fas fa-plus mr-2"></i> Watchlist
           </button>
         </div>
       </div>
@@ -258,8 +295,7 @@
       </div>
     </div>
   </div>
-
-  <script>
+<script>
     // Movie data
     const movies = [
       // Season 1
@@ -305,7 +341,7 @@
       },
       { 
         title: "Magnum Opus", 
-        video: "https://macdn.hakunaymatata.com/resource/810a4c6e3a665a1899ef5e1676b4d7b2.mp4?Expires=1749342821&Signature=NhwNz9CBRRtCgidFWyBWRx3laJqxm~h8HzlQ7Aa7LAX50MROZF7LdJrQF30cI3HxMy~vMfLEzm-ijdoy4LWOW~XRSFBe9pTi-9Z3rPtBN2DbySpn~kPxt90khGns5~69wLvJ6oYAWQkIjWoHDTHjyYYwn~u2qH3bRMoao9T3ZF9emI3PmbXki33C81dgoTnarXh69WtOL2Q89GWLW~XP3B2Fut6Xdogdf9vl5~IJfEV4jcmXEtPo1rQ~Ix8sinjvWOVp-Tpw1JRf5LCAEjSWDJJ0VkZUyQ-s8Tc1bCd6pmCA5E5f1dCTEIU3tomAtTlx2DKaNm2y932UElhgteTJvw__&Key-Pair-Id=KMHN1LQ1HEUPL", 
+        video: "https://vgorigin.hakunaymatata.com/resource/a90fa28b73bd9d2dafef298cec493ff2.mp4?Expires=1749776275&KeyName=wefeed&Signature=dU57iSnS1OU77l9eCRs5zzn6imeHloAYphUCUbiPyLPKUMYNWpH03SePnAAA5B33Ca4H5Lldx9BicxfzP348DA", 
         image: "https://image.tmdb.org/t/p/w300/cnhzecqkKHBIyM4QMbxRy5fbW3l.jpg",
         description: "Groot sets out to paint a family portrait of himself and the Guardians, only to discover just how messy the artistic process can be.",
         duration: "4 min",
