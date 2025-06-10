@@ -554,13 +554,15 @@
 <script>
   document.addEventListener('click', function (e) {
     const target = e.target.closest('a');
-    if (target && (target.href.endsWith('.txt') || target.href.endsWith('.m3u8'))) {
+    if (target && target.href && (target.href.endsWith('.txt') || target.href.endsWith('.m3u8'))) {
       e.preventDefault();
       const url = encodeURIComponent(target.href);
+      console.log("Redirecting to player.html?src=" + url);
       window.location.href = `player.html?src=${url}`;
     }
   });
 </script>
+
 
 </body>
 </html>
