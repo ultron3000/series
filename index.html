@@ -1,36 +1,169 @@
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 bg-yellow-400 text-gray-900 w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-yellow-300 hover:shadow-xl">
+      <i class="fas fa-arrow-up text-xl"></i>
+    </button>
+
+    <script>
+      // Back to Top Button
+      const backToTop = document.getElementById('backToTop');
+      window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+          backToTop.classList.remove('opacity-0', 'invisible');
+          backToTop.classList.add('opacity-100', 'visible');
+        } else {
+          backToTop.classList.add('opacity-0', 'invisible');
+          backToTop.classList.remove('opacity-100', 'visible');
+        }
+      });
+
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    </script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>I Am Groot - Seasons 1 & 2</title>
+  <title>Marvel Studios | Eyes of Wakanda</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* Custom scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
+    :root {
+      --primary: #ffcc00;
+      --secondary: #111827;
+      --accent: #1e40af;
+      --dark: #0f172a;
+      --light: #f8fafc;
+      --font-main: 'Poppins', 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      --font-display: 'Bebas Neue', 'Poppins', sans-serif;
     }
-    ::-webkit-scrollbar-track {
-      background: #111;
+
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700&display=swap');
+    
+    body {
+      background-color: var(--dark);
+      color: var(--light);
+      font-family: var(--font-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
     }
-    ::-webkit-scrollbar-thumb {
-      background: #ffcc00;
-      border-radius: 4px;
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 30%, rgba(30, 64, 175, 0.15) 0%, transparent 30%),
+                  radial-gradient(circle at 80% 70%, rgba(255, 204, 0, 0.1) 0%, transparent 30%);
+      z-index: -1;
+      animation: bgPulse 20s infinite alternate;
     }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #ffdd33;
+
+    @keyframes bgPulse {
+      0% { opacity: 0.8; }
+      50% { opacity: 1; }
+      100% { opacity: 0.8; }
     }
     
-    /* Custom animations */
+    .movie-card {
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      transform-origin: center;
+      perspective: 1000px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+    
+    .movie-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 30px 60px -10px rgba(255, 204, 0, 0.3);
+    }
+
+    .movie-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.8) 100%);
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .movie-card:hover::after {
+      opacity: 1;
+    }
+    
+    .movie-card:hover .movie-poster {
+      transform: rotateX(5deg);
+    }
+    
+    .movie-poster {
+      transition: all 0.5s ease;
+      transform-style: preserve-3d;
+    }
+    
+    .movie-poster::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40%;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
+      border-radius: 0.5rem;
+    }
+    
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+    
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    
+    .gradient-text {
+      background: linear-gradient(90deg, #ffcc00, #ff8c00);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .search-input:focus {
+      box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.3);
+    }
+    
+    .filter-chip {
+      transition: all 0.2s ease;
+    }
+    
+    .filter-chip:hover {
+      transform: translateY(-2px);
+    }
+    
+    .filter-chip.active {
+      background-color: var(--primary);
+      color: var(--dark);
+    }
+    
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
     
-    .fade-in {
-      animation: fadeIn 0.5s ease-out forwards;
+    .animate-fade-in {
+      animation: fadeIn 0.6s ease forwards;
     }
     
     .delay-1 { animation-delay: 0.1s; }
@@ -38,270 +171,330 @@
     .delay-3 { animation-delay: 0.3s; }
     .delay-4 { animation-delay: 0.4s; }
     .delay-5 { animation-delay: 0.5s; }
+    .delay-6 { animation-delay: 0.6s; }
     
-    /* Glow effect */
-    .glow-effect {
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: rgba(30, 41, 59, 0.5);
+      border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary);
+      border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: #ffb700;
+    }
+    
+    /* Dark/Light mode transition */
+    .dark-light-transition {
+      transition: background-color 0.5s ease, color 0.3s ease;
+    }
+    
+    /* Video showcase styles */
+    .video-showcase {
       position: relative;
+      width: 100%;
+      height: 0;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      overflow: hidden;
+      border-radius: 0.5rem;
+      margin-bottom: 1.5rem;
     }
     
-    .glow-effect::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(255, 204, 0, 0);
-      transition: box-shadow 0.3s ease;
-      pointer-events: none;
-    }
-    
-    .glow-effect:hover::after {
-      box-shadow: 0 0 15px rgba(255, 204, 0, 0.7);
-    }
-    
-    /* Gradient text */
-    .gradient-text {
-      background: linear-gradient(90deg, #ffcc00, #ff9900);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    
-    /* Video showcase header */
-    .showcase-video {
+    .video-showcase video {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      z-index: 0;
     }
     
-    .showcase-overlay {
+    .video-overlay {
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%);
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.4));
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.5rem;
       z-index: 1;
+      transition: opacity 0.3s ease;
     }
     
-    .showcase-content {
-      position: relative;
+    .video-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .play-showcase-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: var(--primary);
+      color: var(--dark);
+      border-radius: 50%;
+      width: 4rem;
+      height: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       z-index: 2;
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
     
-    /* Responsive adjustments */
-    @media (max-width: 640px) {
-      .movie-card {
-        width: calc(50% - 1rem);
+    .play-showcase-btn:hover {
+      transform: translate(-50%, -50%) scale(1.1);
+      box-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
+    }
+    
+    .play-showcase-btn.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .volume-control {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 3;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+      width: 2.5rem;
+      height: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .volume-control:hover {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+    
+    @media (max-width: 768px) {
+      .video-showcase {
+        padding-bottom: 75%; /* 4:3 aspect ratio for mobile */
       }
-      .showcase-overlay {
-        background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 100%);
+      
+      .play-showcase-btn {
+        width: 3rem;
+        height: 3rem;
       }
-      .showcase-content {
+      
+      .video-overlay {
         padding: 1rem;
       }
-    }
-    
-    @media (max-width: 400px) {
-      .movie-card {
-        width: 100%;
+      
+      .video-overlay h2 {
+        font-size: 1.5rem;
+      }
+      
+      .video-overlay p {
+        font-size: 0.875rem;
       }
     }
     
-    /* Season selector */
-    .season-selector {
-      scrollbar-width: none;
+    /* Loading animation */
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 0.5;
+      }
+      50% {
+        opacity: 1;
+      }
     }
     
-    .season-selector::-webkit-scrollbar {
-      display: none;
-    }
-    
-    /* Modal video aspect ratio */
-    .video-container {
-      position: relative;
-      padding-bottom: 56.25%; /* 16:9 */
-      height: 0;
-      overflow: hidden;
-    }
-    
-    .video-container iframe,
-    .video-container video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+    .animate-pulse {
+      animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
     }
   </style>
 </head>
-<body class="bg-black text-gray-100 min-h-screen">
-  <!-- Header -->
-  <header class="sticky top-0 z-50 bg-black bg-opacity-90 backdrop-blur-sm border-b border-yellow-600/20">
-    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <div class="flex items-center space-x-2">
-        <div class="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center">
-          <i class="fas fa-shield-alt text-black text-xl"></i>
-        </div>
-        <h1 class="text-2xl font-bold gradient-text">I Am Groot</h1>
-      </div>
-      
-      <div class="flex items-center space-x-4">
-        <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-800 transition">
-          <i class="fas fa-moon text-yellow-500"></i>
-        </button>
-        <button id="search-btn" class="p-2 rounded-full hover:bg-gray-800 transition">
-          <i class="fas fa-search text-yellow-500"></i>
-        </button>
-      </div>
-    </div>
-    
-    <!-- Search Bar (hidden by default) -->
-    <div id="search-bar" class="hidden px-4 pb-4">
-      <div class="relative">
-        <input type="text" placeholder="Search episodes..." 
-               class="w-full bg-gray-900 border border-yellow-600/30 rounded-full py-2 px-4 pl-10 text-white focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
-        <i class="fas fa-search absolute left-3 top-3 text-yellow-500"></i>
-      </div>
-    </div>
-  </header>
-
-  <!-- Main Content -->
-  <main class="container mx-auto px-4 py-8">
-    <!-- Hero Section with Video Showcase -->
-    <section class="mb-12 relative overflow-hidden rounded-xl h-64 md:h-96">
-      <video autoplay muted loop class="showcase-video">
-        <source src="https://imdb-video.media-imdb.com/vi210224921/1434659607842-pgv4ql-1691413662477.mp4?Expires=1748651981&Signature=r~GMO7btq2Tw9AQZhFlWjo7Iml44Ctke20HsJnUzJ5HtiQ0vRbStwPuUS-ILFgbrj4nDwWy-q0AEHXtwca5Fx5pV3wTP8cOh1~nNkR5rkk3h6NGqf6i~0WsvXlu26j-EIYMq0y9Wd~Q4Qzp5jQdhN~PNCOodrR3SkhRIfOc8gTRySpt5mZXJJvipRt5TRqUCX65XbG9378OkWpRzTbtRDMCGtPqDhoCwCtkMLaEtdH6x4DCi4FFUpkxLdrL1kqRX3kUA4DkTdIOqtqRGyKkYeVrR3JoCZuxg-2EID9TMg0Ugimg4FaEG~tq2Z-2448fgVdtFOgrnCW9W65gH~Fuaqg__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <div class="showcase-overlay"></div>
-      <div class="showcase-content h-full flex flex-col justify-end p-6 md:p-8">
-        <h2 class="text-3xl md:text-5xl font-bold mb-2 gradient-text">Seasons 1 & 2</h2>
-        <p class="text-gray-300 mb-4 max-w-lg">The complete adventures of Baby Groot. Watch as the adorable Flora Colossus gets into all sorts of mischief across the galaxy.</p>
-        <div class="flex flex-wrap gap-3">
-          <button class="bg-yellow-600 hover:bg-yellow-700 text-black font-semibold py-2 px-6 rounded-full transition flex items-center">
-            <i class="fas fa-play mr-2"></i> Play All
-          </button>
-          <button class="bg-gray-800 hover:bg-gray-700 text-white font-semibold py-2 px-6 rounded-full transition flex items-center">
-            <i class="fas fa-info-circle mr-2"></i> Details
-          </button>
-          <button class="bg-gray-800 hover:bg-gray-700 text-white font-semibold py-2 px-6 rounded-full transition flex items-center">
-            <i class="fas fa-plus mr-2"></i> Watchlist
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Season Selector -->
-    <div class="flex overflow-x-auto season-selector mb-6 pb-2">
-      <div class="flex space-x-2">
-        <button class="season-btn active bg-yellow-600 text-black px-4 py-2 rounded-full font-medium whitespace-nowrap" data-season="all">All Episodes</button>
-        <button class="season-btn bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-full font-medium whitespace-nowrap" data-season="1">Season 1</button>
-        <button class="season-btn bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-full font-medium whitespace-nowrap" data-season="2">Season 2</button>
-      </div>
-    </div>
-
-    <!-- Filters -->
-    <div class="flex flex-wrap items-center justify-between mb-8 gap-4">
-      <div class="flex space-x-2 overflow-x-auto pb-2 scrollbar-hide">
-        <button class="filter-btn active bg-yellow-600 text-black px-4 py-1 rounded-full text-sm font-medium">All</button>
-        <button class="filter-btn bg-gray-800 hover:bg-gray-700 px-4 py-1 rounded-full text-sm font-medium">Adventure</button>
-        <button class="filter-btn bg-gray-800 hover:bg-gray-700 px-4 py-1 rounded-full text-sm font-medium">Comedy</button>
-        <button class="filter-btn bg-gray-800 hover:bg-gray-700 px-4 py-1 rounded-full text-sm font-medium">Family</button>
-        <button class="filter-btn bg-gray-800 hover:bg-gray-700 px-4 py-1 rounded-full text-sm font-medium">Sci-Fi</button>
-      </div>
-      
-      <div class="flex items-center space-x-2">
-        <span class="text-gray-400 text-sm">Sort by:</span>
-        <select class="bg-gray-900 border border-gray-700 text-white text-sm rounded-full px-3 py-1 focus:outline-none focus:ring-1 focus:ring-yellow-500">
-          <option>Release Date</option>
-          <option>Episode Order</option>
-          <option>Popularity</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- Episodes Grid -->
-    <section>
-      <h3 class="text-xl font-semibold mb-6 flex items-center">
-        <i class="fas fa-list-ul text-yellow-500 mr-2"></i>
-        Episodes
-      </h3>
-      
-      <div id="movies" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-        <!-- Movie cards will be inserted here by JavaScript -->
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="bg-gray-900 border-t border-gray-800 mt-12 py-8">
-    <div class="container mx-auto px-4">
-      <div class="flex flex-col md:flex-row justify-between items-center">
-        <div class="mb-4 md:mb-0">
+<body class="dark-light-transition">
+  <div class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-gradient-to-b from-gray-900 to-transparent backdrop-blur-sm">
+      <div class="container mx-auto px-4 py-4">
+        <div class="flex justify-between items-center">
           <div class="flex items-center space-x-2">
-            <div class="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center">
-              <i class="fas fa-shield-alt text-black text-sm"></i>
-            </div>
-            <span class="text-xl font-bold gradient-text">I Am Groot</span>
+            <i class="fas fa-film text-2xl text-yellow-400"></i>
+            <h1 class="text-2xl font-bold gradient-text">Marvel Studios</h1>
           </div>
-          <p class="text-gray-400 text-sm mt-2">© 2023 Marvel Studios Productions. All rights reserved.</p>
-        </div>
-        
-        <div class="flex space-x-6">
-          <a href="#" class="text-gray-400 hover:text-yellow-500 transition"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="text-gray-400 hover:text-yellow-500 transition"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="text-gray-400 hover:text-yellow-500 transition"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="text-gray-400 hover:text-yellow-500 transition"><i class="fab fa-youtube"></i></a>
+          
+          <div class="flex items-center space-x-4">
+            <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-700 transition">
+              <i class="fas fa-moon text-yellow-400"></i>
+            </button>
+            
+            <div class="relative group">
+              <button class="p-2 rounded-full hover:bg-gray-700 transition">
+                <i class="fas fa-sliders-h text-yellow-400"></i>
+              </button>
+              <div class="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg py-1 z-50 hidden group-hover:block">
+                <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">Settings</a>
+                <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">Help</a>
+                <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">About</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </footer>
-
-  <!-- Playback Modal (hidden by default) -->
-  <div id="playback-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black bg-opacity-90">
-    <div class="relative w-full max-w-4xl bg-gray-900 rounded-xl overflow-hidden">
-      <button id="close-modal" class="absolute top-4 right-4 z-50 text-white hover:text-yellow-500 text-2xl">
-        <i class="fas fa-times"></i>
-      </button>
-      <div class="video-container">
-        <video id="modal-video" class="w-full" controls>
+    </header>
+    
+    <!-- Video Showcase -->
+    <div class="container mx-auto px-4 mt-4">
+      <div class="video-showcase">
+        <video id="showcaseVideo" autoplay muted loop playsinline>
+          <source src="https://imdb-video.media-imdb.com/vi3921987609/1434659607842-pgv4ql-1753731516258.mp4?Expires=1760055216&Signature=aUaRewnAa7sV2Utpb~tNyU1lPflXJpwd7mOJQ4GjNPRMFtVLvjzO3jsmoyqt4Du33kg~N9WQYOj4pbQQESoY-G5CDZF3bHSdyVlbyieBrFgvwH-ghkmqjfEUeIjUoZKUU4puHg9g42csVYv5S~xsaERcP4aEvCMNFFcv6KpmhM0SdTGrRqhk4wSkaSW5NH4D~rmRUfy2yh839QHhVC5WETEKCCWHeHGaw1SiRKczM69fmmcaTUfvkTKMjZhBMwUhwa7N3kIoNilyvLZnddagqDsnW7C98zQezwreEnRQMfEA1mTsbulnBRdePG6nc70HITaYGh98BAFIb9U58ma45Q__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA">
           Your browser does not support the video tag.
         </video>
-      </div>
-      <div class="p-6">
-        <h3 id="modal-title" class="text-2xl font-bold mb-2"></h3>
-        <div class="flex items-center text-gray-400 text-sm mb-4">
-          <span class="mr-4" id="season-episode"></span>
-          <span id="episode-duration"></span>
+        <div class="volume-control" id="volumeControl">
+          <i class="fas fa-volume-up text-white"></i>
         </div>
-        <p id="modal-description" class="text-gray-300 mb-6">
-          Loading description...
-        </p>
-        <div class="flex space-x-3">
-          <button class="bg-yellow-600 hover:bg-yellow-700 text-black font-semibold py-2 px-6 rounded-full transition flex items-center">
-            <i class="fas fa-play mr-2"></i> Play
-          </button>
-          <button class="bg-gray-800 hover:bg-gray-700 text-white font-semibold py-2 px-6 rounded-full transition flex items-center">
-            <i class="fas fa-plus mr-2"></i> Watchlist
-          </button>
+        <div class="play-showcase-btn hidden" id="playShowcaseBtn">
+          <i class="fas fa-play text-xl"></i>
+        </div>
+        <div class="video-overlay" id="videoOverlay">
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">Eyes of Wakanda</h2>
+          <p class="text-gray-300 max-w-2xl text-sm md:text-base">
+            Follow the adventures of brave Wakandan warriors throughout history in this globe-trotting adventure, where they must carry out dangerous missions to retrieve Vibranium artifacts from the enemies of Wakanda. They are the Hatut Zaraze and this is their story.
+          </p>
+          <div class="flex items-center mt-4 space-x-3">
+            <button class="bg-yellow-400 text-gray-900 px-4 py-2 rounded-lg font-semibold hover:bg-yellow-300 transition">
+              <i class="fas fa-play mr-2"></i> Watch Now
+            </button>
+            <button class="bg-gray-800 bg-opacity-70 text-white px-4 py-2 rounded-lg font-semibold hover:bg-gray-700 transition">
+              <i class="fas fa-info-circle mr-2"></i> More Info
+            </button>
+          </div>
         </div>
       </div>
     </div>
+<!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-6">
+      <!-- Search and Filters -->
+      <div class="mb-8">
+        <div class="relative mb-6">
+          <input 
+            id="searchBar" 
+            type="text" 
+            placeholder="Find your favorite Wakanda episodes..." 
+            class="w-full px-6 py-4 bg-gray-800 border-2 border-gray-700 rounded-xl focus:outline-none focus:border-yellow-400 text-white search-input transition-all duration-300 placeholder-gray-400"
+            data-placeholder="Find your favorite Wakanda episodes..."
+          >
+          <div class="absolute right-6 top-1/2 transform -translate-y-1/2 flex items-center">
+            <i class="fas fa-search text-yellow-400 mr-2 transition-all duration-300"></i>
+            <span class="text-xs bg-yellow-400 text-gray-900 px-2 py-1 rounded-full hidden" id="searchCounter">0</span>
+          </div>
+        </div>
+        
+        <div class="flex flex-wrap gap-3 mb-6 overflow-x-auto pb-2 scrollbar-hide">
+          <button class="filter-chip px-4 py-2 bg-gray-800 text-white rounded-full hover:bg-gray-700 active">
+            All Episodes
+          </button>
+          <button class="filter-chip px-4 py-2 bg-gray-800 text-white rounded-full hover:bg-gray-700">
+            Latest
+          </button>
+          <button class="filter-chip px-4 py-2 bg-gray-800 text-white rounded-full hover:bg-gray-700">
+            Popular
+          </button>
+          <button class="filter-chip px-4 py-2 bg-gray-800 text-white rounded-full hover:bg-gray-700">
+            Action
+          </button>
+          <button class="filter-chip px-4 py-2 bg-gray-800 text-white rounded-full hover:bg-gray-700">
+            Drama
+          </button>
+          <button class="filter-chip px-4 py-2 bg-gray-800 text-white rounded-full hover:bg-gray-700">
+            Thriller
+          </button>
+        </div>
+        
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-xl font-semibold">All Episodes <span id="episode-count" class="text-yellow-400">(6)</span></h3>
+          <div class="flex items-center space-x-2">
+            <span class="text-gray-400">Sort by:</span>
+            <select class="bg-gray-800 border border-gray-700 text-white px-3 py-1 rounded-lg focus:outline-none focus:border-yellow-400">
+              <option>Release Date</option>
+              <option>Alphabetical</option>
+              <option>Popularity</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Movies Grid with Season Accordions -->
+      <div class="space-y-8">
+        <div class="season-accordion" data-season="1">
+          <button class="season-toggle flex items-center justify-between w-full py-4 px-6 bg-gray-800 rounded-xl hover:bg-gray-700 transition-all">
+            <h3 class="text-xl font-bold text-yellow-400">Season 1</h3>
+            <i class="fas fa-chevron-down transform transition-transform duration-300"></i>
+          </button>
+          <div class="season-content grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mt-4">
+            <!-- Season 1 content will be inserted here by JS -->
+          </div>
+        </div>
+
+        <div class="season-accordion" data-season="2">
+          <button class="season-toggle flex items-center justify-between w-full py-4 px-6 bg-gray-800 rounded-xl hover:bg-gray-700 transition-all">
+            <h3 class="text-xl font-bold text-yellow-400">Season 2</h3>
+            <i class="fas fa-chevron-down transform transition-transform duration-300"></i>
+          </button>
+          <div class="season-content grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mt-4">
+            <!-- Season 2 content will be inserted here by JS -->
+          </div>
+        </div>
+      </div>
+      
+      <!-- Loading Spinner -->
+      <div id="loading-spinner" class="hidden flex justify-center items-center py-12">
+        <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-yellow-400"></div>
+      </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-6">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-4 md:mb-0">
+            <div class="flex items-center space-x-2">
+              <i class="fas fa-film text-xl text-yellow-400"></i>
+              <span class="text-lg font-semibold gradient-text">Marvel Studios</span>
+            </div>
+            <p class="text-gray-400 mt-2">© 2023 All Rights Reserved</p>
+          </div>
+          
+          <div class="flex space-x-6">
+            <a href="#" class="text-gray-400 hover:text-yellow-400 transition"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-gray-400 hover:text-yellow-400 transition"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-gray-400 hover:text-yellow-400 transition"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-gray-400 hover:text-yellow-400 transition"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
   </div>
+
 <script>
     // Movie data
     const movies = [
       // Season 1
       { 
         title: "Groot's First Steps", 
-        video: "https://skra.automatedworlds.shop/v4/9a/b9uzv/cf-master.txt?v=1731882962", 
+        video: "https://skra.automatedworlds.shop:443/v4/9a/b9uzv/index-f2-v1-a1.txt", 
         image: "https://image.tmdb.org/t/p/w300/iecIwrRoq1uZfhJ9XRrZD29Zr4R.jpg",
         description: "Baby Groot takes his first steps out of his pot, only to learn you have to walk before you can run.",
         duration: "6 min",
@@ -311,7 +504,7 @@
       },
       { 
         title: "The Little Guy", 
-        video: "https://spuc.restationaggregate.cyou:443/v4/ic/gory1/index-f2-v1-a1.txt", 
+        video: "https://macdn.hakunaymatata.com/resource/af3218ce4edda6bbd5e5e39b4b92df70.mp4?Expires=1749410153&Signature=3n1kiHVjTPUM0NHCue5faW34i5k-IVZcdcCoKlKGK~epwc9yWLM2J3Ow3u14iOKi7jFv4I34I5M0qa10KOWpuVemwGFBgeePVl27kJ3rZjvClaVVV1zXDjI74bMHuHMtxooJewRJUWEE8cL57NbxmZSIYP9jI~AJNAZyBHjEAGF4VcuhY-FIgdDj6Swg8bz2N-i78ALPRW4~LxMa1whKIn2j~bN82fku48UETgEu27yI41Kgq~apLhc404N42PSeniK3~Hdr3eYx6uam-JvBxLXS2aldCFyIj4zMwkb1h9PlHnVuvDvTAhWMXQxG81kqKj4RsJO67~V4htxpNiuB2w__&Key-Pair-Id=KMHN1LQ1HEUPL", 
         image: "https://image.tmdb.org/t/p/w300/6pFcTY18M9EpKQEEZZMzVnX4bMF.jpg",
         description: "Groot discovers a miniature civilization that believes the seemingly enormous tree toddler is the hero they've been waiting for.",
         duration: "4 min",
@@ -321,7 +514,7 @@
       },
       { 
         title: "Groot's Pursuit", 
-        video: "https://macdn.hakunaymatata.com/resource/9f201cf2901fb63b4870caa4a9578d34.mp4?Expires=1749766553&Signature=asJSqhrzuCqkxEkaOwFm42ADBiTgbOSUovIMJQjaQGFQuxHnABgg3AfXVxZFQZnUEUVDMyzbFM~q4gnRccndwmQKBxJNh-zU07KzH3XB38PdSNTFdZe2ad-7A3wO1MPEtavcEDEmc3sS7OvMg79lIwhXEtu1br5CoXsrIfLcxnCz4cbK17A9MIZEfahx-dVncA46sJwHjwzL3yqQ9jCLs5-CPMxrCkQzXnATMaKhst-eyaLuC9RWMiqPZVZrzenhPQF~ubInAe~RzHkGbGoH4fItcaBKQmV-LqYFdjMgiW3Jop8Y0oCiscCcvXsaj~mrq77mBHi~6pfKUF9XkeaenA__&Key-Pair-Id=KMHN1LQ1HEUPL", 
+        video: "https://vgorigin.hakunaymatata.com/resource/7de8ac3b05e4aa1dd0dfd9a80d68ca35.mp4?Expires=1749410349&KeyName=wefeed&Signature=VgLXJSuL_iVoKtabnEpFvmOPTgwIC1glS1RNPhslMfzkBKV1NYtV3jV9wxT9O4IpAwveRNmz7eLugXHBK7qmCQ", 
         image: "https://image.tmdb.org/t/p/w300/nv0q5V1vGwRVO4Rv3MOEmniUbWj.jpg",
         description: "Groot investigates a spooky noise that's been haunting the Quadrant, which leads to an intense dance off.",
         duration: "4 min",
@@ -331,7 +524,7 @@
       },
       { 
         title: "Groot Takes a Bath", 
-        video: "https://macdn.hakunaymatata.com/resource/255d460318c4e14a8da1d9eb72312279.mp4?Expires=1749766746&Signature=mvbpvr~UJVr-ClrjeKAtXpC7OG987J0gLsEQUZyNZu~jgrePmc4j1Fv4SH-KAHzd8wu9jyIL0q3ykgqUfQVa-CdCPUc9mr76yCFD9wrJsp5egFYnGrexFDdCtScSZlvUW2aPYOELjpVHX4hlWMF6qZa8qF2dYp601Gib0TTMOw92sZrnXGcUWEFsUB1NvFecR~NUFuSIJrYFTJD1Cv19~l5hNsqnh4ux2JRvMx7LXJBu5540ELAlOIszpyux5D3fx7FqqsdG7bCHUHUVj56PeSuqRNJOcCGbKHvvwBsggE71W-zWwNf4AyuUCJgHEO8j8cHITyIHujQFTD7AaqzqNg__&Key-Pair-Id=KMHN1LQ1HEUPL", 
+        video: "https://macdn.hakunaymatata.com/resource/83f86aa6066c984964574f5e173d8226.mp4?Expires=1749410557&Signature=I3kgFtadusb5mzwkw4SRJHEBS1KUka-v3qsIH34JBti2~do4wH5IT2bGFSZNv9IEZgAs12O8rhGpKV965lkwxrHfDfwinQtH5HqRw0b2htyhVkFXbhM~IQdwApWxYHpEKvnQcB5FkdE362XwFBhmhdpJmTJ2ucis5mrpkLxU4HMT7B4OUHRjAWL-jnFnpRrGMnz~r3z6N6IXGS9DKBo9s3PqdeaGWwb0gGFjUH3CSC295vpgs6DZLwEsLvMf23uBx~TSrae4y0mRq1fkNc3dKdGI61BKZqs8uugHBELYHJ6g8Mwaj8WM4n-ADUEsl-7qbOF-S4wsH0WUYDL7EzCkcw__&Key-Pair-Id=KMHN1LQ1HEUPL", 
         image: "https://image.tmdb.org/t/p/w300/stKeLppDBwscxoE9RXxNyrur27G.jpg",
         description: "Everybody needs some alone time to relax and wash up, but things go quite differently when you're a Flora Colossi toddler.",
         duration: "4 min",
@@ -341,7 +534,7 @@
       },
       { 
         title: "Magnum Opus", 
-        video: "https://s9dz.caporetherford.sbs/v4/ic/irjxm/index-f2-v1-a1.txt", 
+        video: "https://cdn4521.lop3sdi5dq5.com/stream2/i-arch-400/a5b5ae66248be0039515bda55fa1d488/MJTMsp1RshGTygnMNRUR2N2MSlnWXZEdMNDZzQWe5MDZzMmdZJTO1R2RWVHZDljekhkSsl1VwYnWtx2cihVT2llaCtmWHFFeOpWWy8EVZBTWqtmMZJTR61keZp3TX5kaa1WTx8EVFVjWHlUP:1748570540:89.116.30.152:9fb5f1165ca690d25ae9355ddf668ec784a71f9fad07d9bd11e3c6ced9880fa6/720/index.m3u8", 
         image: "https://image.tmdb.org/t/p/w300/cnhzecqkKHBIyM4QMbxRy5fbW3l.jpg",
         description: "Groot sets out to paint a family portrait of himself and the Guardians, only to discover just how messy the artistic process can be.",
         duration: "4 min",
@@ -353,7 +546,7 @@
       // Season 2
       { 
         title: "Are You My Groot?", 
-        video: "https://macdn.hakunaymatata.com/resource/de4e89d34d8993b2d3708d0eda071ba3.mp4?Expires=1749802090&Signature=qP-m82hv9S9ijvoONnu~PUcxo1R9WXJaHKDA8WpQlZr0gtzhC-twI5tJov4xPQ6fUud2zJpg4sVMAvzrcIO5uIco7nrJgdzUucyNh92XrXsFQGmmuIEMfscKgBUJ2O0jqJISfgiBw6qmRryRAwvwbskoKm0Gcm8P-64v6IIbbJKtgtYv1yd7CSikcZ4C13xPsscz4x566TLYLmrQUb6JlyIINKPRb0TJ73TGDs6bhGX1dBiGJcSI590SRuYZXvPaHlk7N60BvGxosGNN83sozPUqNN6MINbOa~PwDigOHLB2QzSDeX0nZP70ZQ11~YDhuYsgVv3PS5aRzRl9Lgqrcw__&Key-Pair-Id=KMHN1LQ1HEUPL", 
+        video: "https://macdn.hakunaymatata.com/resource/de4e89d34d8993b2d3708d0eda071ba3.mp4?Expires=1749409894&Signature=w1DQLOMttvVMtOoNlsCfIpBzGQIwKoLdDxaqh-fPtF8qZtoTkxcSTFGOU6EulgPirjuwcRHsQJPUyVa8CV33ugq-CiT5K7pIO-pOurxpT~nxz1sIEBH7Tp4DCd3c3pUt9pEv5hRIn0l8xXs58c9V~M-gSuWzp1bc7nzictcP4x0ve7NGBFcOW7q6nsyUyeAqHdKJkmrIb-XdFhgK6e9TM~fE8jMZWRUgun0dFOV8pe-cxkQkh8m3aoTbCJFO6C7nTzxrc2TtMT1Z6-ZI1X6VIr6kjpJE0mkR0cDA-0jx~6o1ZsQeVAm~yIlEemBVlhkV8PPeYjYhSaQyA0Rqk4jZfQ__&Key-Pair-Id=KMHN1LQ1HEUPL", 
         image: "https://image.tmdb.org/t/p/w300/rJelmgL1yTFfH2PhC3LufMhYQko.jpg",
         description: "Groot stumbles across a strange egg, adopting the little creature that emerges as his own.",
         duration: "5 min",
@@ -363,7 +556,7 @@
       },
       { 
         title: "Groot Noses Around", 
-        video: "https://macdn.hakunaymatata.com/resource/8a1a2ae9a183a2fa0e90f9f59dafae93.mp4?Expires=1749732295&Signature=oZRBSRVN43rXzDXsgwpjkYPySRDVBg1ZxVM54lx1XuoPCXh6azUDSAGciLUZkbd-OzTgqms3W~7ivEPEVaEb9PFIsWj9QzH37Okcoe6x4SpsoZbHQm3LvmGOBtaGhdVzj4qgC1ryi7rSCAS1SXbG6LYveBfhPxBfC1DvAotw5GjrMyEtH3DnhMNMfcFqdSti-Xo4JJZF-z9ZXZnQFZo5xaEslj3OocJXwt0J~VQqtWqNnv64WNupt3HnyVl6OOe3lEmlDtrvq08oTKxKUo6dmAXlBzQwKqj~FOEQO6MhO03OjhdeLakgcWAeb7MwwYeffHkevFIDHK50WicqXY-y0g__&Key-Pair-Id=KMHN1LQ1HEUPL", 
+        video: "https://macdn.hakunaymatata.com/resource/8a1a2ae9a183a2fa0e90f9f59dafae93.mp4?Expires=1749410489&Signature=CHbmbnLWLoCIor5qA57J4nux5bACNb~7Lj1KOJxM3g2eRfjPf3GiXfvRINWf2CaKQrimGceCJQs8adw8P~HNei-P-ThkIRdsSkFXKVB5pWCGoTZ4Mjvb8660nQRCZ9yrEMgJXKEkbUrSnSfiP9WvJ675g6Dk7m6zLw6e2435qKQVH2U~lXGCZXMNKRBnWNnRFMyLgikgO30mgw2gSDgfs-amOcA9HSViukitvDOdcTexVby52FuzBWfjttj0Pu1rzdQepCvXLwb9cVfr6zAx-K6fp9zgy2yTMdgiFq3y19wnjsT9D6-yA6ejqtyzH-YnPWnXgrRC4oZ6h5lM8Fv8bA__&Key-Pair-Id=KMHN1LQ1HEUPL", 
         image: "https://image.tmdb.org/t/p/w300/bf39ykfbUodisUirJXcUbI8bRFe.jpg",
         description: "When Groot gets the sense of smell, he learns not to stick his new nose where it doesn't belong.",
         duration: "5 min",
@@ -373,7 +566,7 @@
       },
       { 
         title: "Groot's Snow Day", 
-        video: "https://macdn.hakunaymatata.com/resource/1ad9b7f4793896affedb670125df0858.mp4?Expires=1749989844&Signature=Ty9kFU7jzyPeFp79LjUS4tRrItyqCC6l0JY6TFGKoMOcwoTkpTXvrNAA7TYbT25ypFDeRrJLcyrhytfw4X~kE6isR~9dEj2HTCXU77l3J01ycRuA4OJYko7JJDSCNP4Ek2q4SQfmsehH6o~Mvx3IlbRaRq-15HkV-4fCIccyAww8VFLrFEeIO~Mr-e9fig0ld~mcmVACzj-zj2OzQpVQm7af27xETpl8AKeArvTFy6OJE1SjXpth81-CboZjerO~V7FbfqE4FRcU887-VTGwLiMFY9VcKbM7sK5G5fXSBoGMzR00r7adh4H7wrU~-y-qcaAqhtH7ZUcqoSR4IHRRpQ__&Key-Pair-Id=KMHN1LQ1HEUPL", 
+        video: "https://macdn.hakunaymatata.com/resource/1ad9b7f4793896affedb670125df0858.mp4?Expires=1749413775&Signature=Uk82AD9vnaTs6dm66TJWnBMxm6yMvgBJVYdCAl2VMO1RuOJPqgWIVvPpLY79dx~F3ZaQpRbQV56RfXEKIZwGfzSBU3vrMToDUb-oFKwY3oMwEJBpfhaWTJivbH6E1VHXnIiyOqazPY7wY3CYiwSec636HUWoT2mYwAJ8zis4v9H0Lk7dkSUHPFBgaNNCvediCi0CuNp0ql~TWiIv4KVSWtNpaJQs-Uy35AJ8GRQbmqGVohho3WoSgCUCUle35Yhul40DuldxSrAROaru1a1NkcOywFHDdoRLrGBsXi1ULmqueGftBkq1pQ2DsLoF55PLMx-o2b2JNNZbpMxwbw-pRw__&Key-Pair-Id=KMHN1LQ1HEUPL", 
         image: "https://image.tmdb.org/t/p/w300/6H9lUVRUJyWn7t0VAix83TszrfJ.jpg",
         description: "Groot builds a snowman with scraps of junk, creating an unstoppable snowman-robot that wreaks havoc.",
         duration: "4 min",
@@ -383,7 +576,7 @@
       },
       { 
         title: "Groot's Sweet Treat", 
-        video: "https://macdn.hakunaymatata.com/resource/2d26d733932b288d9f88b7dd153feefe.mp4?Expires=1749819266&Signature=nPD9lt5KVW~lh~Mw1ohBl6~IC9bPnFmS2WEYgCTd0ezPfxAjTQXP4OquU7Jim5q-ugXAwS7D49EGh6RhpL1l549zfzkXFrCFTdlNmwN2EKl6NaEhn6S~DKllK2dXrajJf0K6XKbsOX-GiQujuZVZQOHX6bx9N5KZVXDxSzYhDrgUw0UsgeO5MbfqnoegBHs9xsizzYKivGe4vtEVqfnVbUhnZxol~uqbhTyWcd6RgYbVbKR~cftKm7mJ9ehx~TzRNCoIpUZiNbQR-~PptU1DajU~wx-yzQDz2f2IoMNZzfV2KaxHhvtkhHmuNs3WA4B58gp25lFm0bKJWXp4yOKdbQ__&Key-Pair-Id=KMHN1LQ1HEUPL", 
+        video: "https://macdn.hakunaymatata.com/resource/2d26d733932b288d9f88b7dd153feefe.mp4?Expires=1749413823&Signature=J2zUOlESkbW2SKHxnQVQqufYG17lBBjxtHK5SsJt2yVp~C2QRNDmULHpznP-6iXdnvYwiRmM1dLhmRnz2kJrz8HtejdQz3O6CtC-CFYF1n7aJ5A-oYS~D~en3fNNS7-YeUhVp5j4gh2fvG-YEVeMuhixTFHa4IVXaN0SMw2OUryDDGVpy6RRzPW5hydxJ3X~0uUt87Hc7wA4MS0jayezsK5cL30JoBaf0hnPRn5AJuFzCUasHtH3QrJd0wvX9rYsQktXZcQIhiucWJ3wjc0ShbWJxehvLfYNTUPyooS~goWCkiK16LF5D1ZcF~ol37ogKri-z44uInNnnSPApLUAbA__&Key-Pair-Id=KMHN1LQ1HEUPL", 
         image: "https://image.tmdb.org/t/p/w300/4PSxBL0Muya07GIteMxJhA4A2iB.jpg",
         description: "Groot frantically scours the ship for coins as an intergalactic ice cream truck approaches.",
         duration: "6 min",
@@ -393,7 +586,7 @@
       },
       { 
         title: "Groot and the Great Prophecy", 
-        video: "https://macdn.hakunaymatata.com/resource/e71df8f64ac613e8947743d8a40a3f82.mp4?Expires=1749990348&Signature=PHSXozKDXrA0y8ZMoGYJeKI7l6tRPxBWV0KqPKt1LWPvHTR4w83oI44VYp36UCcWS6hoYUuOn-eYEqMKNRA7P06XJKtbgK5V3v9rqH9hl1I-oUKSQTGPYVvkvaT3rJBfQZ~6BowZqR5mrgecC4k0ynW81oR3BuCYbyNtCvkH47oBZR8CM1E7Ia-0XJOehrRjpbi~VXXrRBzShZjQap1ybPzH4rMT2otmxQlIjcmDA0sacXaCyUkiIHCHVrw4o1mvXQusWt4dgJd4lGGNT4kjcysd1HkGvhuorV7~xPFO2XDy1KsDwJHLJQdr7QFFMfgZERBZTam9yhW--vIzDZq6wQ__&Key-Pair-Id=KMHN1LQ1HEUPL", 
+        video: "https://macdn.hakunaymatata.com/resource/e71df8f64ac613e8947743d8a40a3f82.mp4?Expires=1749412171&Signature=mMR6JeivZPPuB-0QgfTbXFG64zSMFuX-B2l9v61ahUyCkcAjsW8aV60wAQ2eANUXrbTKAPwopeRr-f0Bp0eNRMAvciorqEnvK9dmigGM8qgAyzHY5nbYzWk6iOSeKJjJ~ki-ai9ojMHNXNASU1c3jDVeLj8GG2V77q9GWiM0YD02bFa9Hxee~JUyNmAB46Rh-BO1sdNsxo1lQ6b737Cpf8yH9JtvIBkQOlzAHNd2VUnbbJGNaJs0XqGhLBoB5QjY8NEPWjtzZ1ThFWlgVBGxfa3HCbJnABiSqQb3ShTX6WFn68xqusSUF55ER0YEyx6ebARjzfuEpuFC09AmcaSJWQ__&Key-Pair-Id=KMHN1LQ1HEUPL", 
         image: "https://image.tmdb.org/t/p/w300/o7gblk3nygQh2lEIjCHEdLK3RHA.jpg",
         description: "Groot lands in the heart of an ancient temple with a prophecy he must fulfill to save the universe.",
         duration: "5 min",
@@ -403,166 +596,142 @@
       }
     ];
 
-    // DOM elements
+    // DOM Elements
     const container = document.getElementById('movies');
-    const searchBtn = document.getElementById('search-btn');
-    const searchBar = document.getElementById('search-bar');
+    const searchBar = document.getElementById('searchBar');
     const themeToggle = document.getElementById('theme-toggle');
-    const playbackModal = document.getElementById('playback-modal');
-    const closeModal = document.getElementById('close-modal');
-    const modalVideo = document.getElementById('modal-video');
-    const modalTitle = document.getElementById('modal-title');
-    const modalDescription = document.getElementById('modal-description');
-    const seasonEpisode = document.getElementById('season-episode');
-    const episodeDuration = document.getElementById('episode-duration');
-    const seasonBtns = document.querySelectorAll('.season-btn');
-    const filterBtns = document.querySelectorAll('.filter-btn');
+    const loadingSpinner = document.getElementById('loading-spinner');
+    const episodeCount = document.getElementById('episode-count');
 
-    // Current filter state
-    let currentSeason = 'all';
-    let currentFilter = 'All';
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      renderMovies(movies);
+      setupEventListeners();
+      checkThemePreference();
+    });
 
-    // Initialize the page
-    function initPage() {
-      renderMovies();
-      
-      // Season buttons
-      seasonBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-          document.querySelector('.season-btn.active').classList.remove('active', 'bg-yellow-600', 'text-black');
-          this.classList.add('active', 'bg-yellow-600', 'text-black');
-          currentSeason = this.dataset.season;
-          renderMovies();
-        });
+    // Render movies by season
+    function renderMovies(moviesToRender) {
+      // Clear all season containers first
+      document.querySelectorAll('.season-content').forEach(container => {
+        container.innerHTML = '';
       });
-
-      // Filter buttons
-      filterBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-          document.querySelector('.filter-btn.active').classList.remove('active', 'bg-yellow-600', 'text-black');
-          this.classList.add('active', 'bg-yellow-600', 'text-black');
-          currentFilter = this.textContent;
-          renderMovies();
-        });
-      });
-    }
-
-    // Render movies based on current filters
-    function renderMovies() {
-      container.innerHTML = '';
       
-      let filteredMovies = movies;
+      episodeCount.textContent = `(${moviesToRender.length})`;
       
-      // Apply season filter
-      if (currentSeason !== 'all') {
-        filteredMovies = filteredMovies.filter(movie => movie.season == currentSeason);
-      }
-      
-      // Apply tag filter
-      if (currentFilter !== 'All') {
-        filteredMovies = filteredMovies.filter(movie => movie.tags.includes(currentFilter));
-      }
-      
-      // Create movie cards
-      filteredMovies.forEach((movie, index) => {
-        const card = document.createElement('div');
-        card.className = `movie-card fade-in delay-${index % 5} glow-effect`;
-        card.innerHTML = `
-          <div class="relative group overflow-hidden rounded-xl cursor-pointer">
-            <img src="${movie.image}" alt="${movie.title}" 
-                 class="w-full h-48 sm:h-56 md:h-64 object-cover rounded-xl transition duration-500 group-hover:scale-105">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-              <div>
-                <h3 class="text-white font-semibold text-lg">${movie.title}</h3>
-                <p class="text-gray-300 text-sm">${movie.duration}</p>
+      moviesToRender.forEach((movie, index) => {
+        const seasonContainer = document.querySelector(`.season-content[data-season="${movie.season}"]`);
+        const delayClass = `delay-${(index % 6) + 1}`;
+        
+        const movieCard = document.createElement('div');
+        movieCard.className = `movie-card animate-fade-in ${delayClass}`;
+        movieCard.innerHTML = `
+          <div class="relative overflow-hidden rounded-xl movie-poster h-80">
+            <img src="${movie.image}" alt="${movie.title}" class="w-full h-full object-cover">
+            <div class="absolute bottom-0 left-0 right-0 p-4 z-10">
+              <div class="flex justify-between items-center mb-2">
+                <span class="bg-yellow-400 text-gray-900 text-xs font-bold px-2 py-1 rounded">${movie.rating} ★</span>
+                <span class="bg-gray-900 bg-opacity-70 text-white text-xs px-2 py-1 rounded">${movie.duration}</span>
+              </div>
+              <h3 class="text-lg font-bold text-white truncate">${movie.title}</h3>
+              <div class="flex flex-wrap gap-1 mt-2">
+                ${movie.genre.map(g => `<span class="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">${g}</span>`).join('')}
               </div>
             </div>
-            <div class="absolute top-3 right-3 bg-black bg-opacity-70 text-yellow-500 rounded-full w-10 h-10 flex items-center justify-center">
-              <i class="fas fa-play"></i>
-            </div>
-          </div>
-          <div class="mt-3">
-            <h3 class="text-white font-medium">${movie.title}</h3>
-            <div class="flex items-center text-gray-400 text-sm mt-1">
-              <span>S${movie.season} • E${movie.episode}</span>
-              <span class="mx-2">•</span>
-              <span>${movie.duration}</span>
-            </div>
-            <div class="flex flex-wrap gap-1 mt-2">
-              ${movie.tags.map(tag => `<span class="bg-gray-800 text-gray-300 text-xs px-2 py-0.5 rounded-full">${tag}</span>`).join('')}
+            <div class="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+              <button class="play-button bg-yellow-400 text-gray-900 rounded-full w-16 h-16 flex items-center justify-center transform hover:scale-110 transition-transform">
+                <i class="fas fa-play text-xl"></i>
+              </button>
             </div>
           </div>
         `;
         
-        card.addEventListener('click', () => {
-          openModal(movie);
+        movieCard.addEventListener('click', () => {
+          loadingSpinner.classList.remove('hidden');
+          setTimeout(() => {
+            const url = `player.html?title=${encodeURIComponent(movie.title)}&video=${encodeURIComponent(movie.video)}&index=${index}`;
+            window.location.href = url;
+          }, 500);
         });
         
-        container.appendChild(card);
+        container.appendChild(movieCard);
       });
     }
 
-    // Open modal with movie details
-    function openModal(movie) {
-      modalTitle.textContent = movie.title;
-      modalDescription.textContent = movie.description;
-      seasonEpisode.textContent = `S${movie.season} • E${movie.episode}`;
-      episodeDuration.textContent = movie.duration;
-      modalVideo.src = movie.video;
+    // Setup event listeners
+    function setupEventListeners() {
+      // Season accordion toggles
+      document.querySelectorAll('.season-toggle').forEach(toggle => {
+        toggle.addEventListener('click', function() {
+          const content = this.nextElementSibling;
+          const icon = this.querySelector('i');
+          
+          content.classList.toggle('hidden');
+          icon.classList.toggle('rotate-180');
+        });
+      });
+      // Search functionality
+      searchBar.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        const filteredMovies = movies.filter(movie => 
+          movie.title.toLowerCase().includes(searchTerm) ||
+          movie.genre.some(g => g.toLowerCase().includes(searchTerm))
+        );
+        renderMovies(filteredMovies);
+      });
       
-      playbackModal.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
+      // Filter chips
+      document.querySelectorAll('.filter-chip').forEach(chip => {
+        chip.addEventListener('click', function() {
+          document.querySelector('.filter-chip.active').classList.remove('active');
+          this.classList.add('active');
+          
+          const filterText = this.textContent.trim();
+          if (filterText === 'All Episodes') {
+            renderMovies(movies);
+          } else {
+            const filteredMovies = movies.filter(movie => 
+              movie.genre.includes(filterText)
+            );
+            renderMovies(filteredMovies);
+          }
+        });
+      });
+      
+      // Theme toggle
+      themeToggle.addEventListener('click', toggleTheme);
     }
 
-    // Close modal
-    function closeModalHandler() {
-      playbackModal.classList.add('hidden');
-      modalVideo.pause();
-      document.body.style.overflow = '';
-    }
-
-    // Event listeners
-    searchBtn.addEventListener('click', () => {
-      searchBar.classList.toggle('hidden');
-    });
-
-    themeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('bg-gray-100');
-      document.body.classList.toggle('text-gray-900');
-      document.body.classList.toggle('bg-black');
-      document.body.classList.toggle('text-gray-100');
-      
-      const icon = themeToggle.querySelector('i');
-      if (document.body.classList.contains('bg-black')) {
-        icon.classList.remove('fa-sun');
-        icon.classList.add('fa-moon');
+    // Theme management
+    function checkThemePreference() {
+      if (localStorage.getItem('theme') === 'dark' || 
+          (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+        themeToggle.innerHTML = '<i class="fas fa-sun text-yellow-400"></i>';
       } else {
-        icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun');
+        document.documentElement.classList.remove('dark');
+        themeToggle.innerHTML = '<i class="fas fa-moon text-yellow-400"></i>';
+      }
+    }
+
+    function toggleTheme() {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+        themeToggle.innerHTML = '<i class="fas fa-moon text-yellow-400"></i>';
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+        themeToggle.innerHTML = '<i class="fas fa-sun text-yellow-400"></i>';
+      }
+    }
+
+    // Simulate loading more movies on scroll (for demo purposes)
+    window.addEventListener('scroll', () => {
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 500) {
+        // In a real app, you would fetch more data here
       }
     });
-
-    closeModal.addEventListener('click', closeModalHandler);
-    playbackModal.addEventListener('click', function(e) {
-      if (e.target === this) closeModalHandler();
-    });
-
-    // Initialize the page when loaded
-    window.addEventListener('DOMContentLoaded', initPage);
   </script>
-
-<script>
-  document.addEventListener('click', function (e) {
-    const target = e.target.closest('a');
-    if (target && target.href && (target.href.endsWith('.txt') || target.href.endsWith('.m3u8'))) {
-      e.preventDefault();
-      const url = encodeURIComponent(target.href);
-      console.log("Redirecting to player.html?src=" + url);
-      window.location.href = `player.html?src=${url}`;
-    }
-  });
-</script>
-
-
 </body>
 </html>
