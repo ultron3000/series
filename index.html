@@ -2,142 +2,81 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>I Am Groot</title>
+  <title>Citadel - Season 1</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* Custom scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
+    /* Loading spinner */
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(255, 204, 0, 0.3);
+      border-radius: 50%;
+      border-top-color: #ffcc00;
+      animation: spin 1s ease-in-out infinite;
     }
-    ::-webkit-scrollbar-track {
-      background: #111;
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
-    ::-webkit-scrollbar-thumb {
-      background: #ffcc00;
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #ffdd33;
-    }
-    
-    /* Custom animations */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .fade-in {
-      animation: fadeIn 0.5s ease-out forwards;
-    }
-    
-    .delay-1 { animation-delay: 0.1s; }
-    .delay-2 { animation-delay: 0.2s; }
-    .delay-3 { animation-delay: 0.3s; }
-    .delay-4 { animation-delay: 0.4s; }
-    .delay-5 { animation-delay: 0.5s; }
-    
-    /* Glow effect */
-    .glow-effect {
-      position: relative;
-    }
-    
-    .glow-effect::after {
-      content: '';
+    .loading-overlay {
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(255, 204, 0, 0);
-      transition: box-shadow 0.3s ease;
-      pointer-events: none;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
     }
     
-    .glow-effect:hover::after {
-      box-shadow: 0 0 15px rgba(255, 204, 0, 0.7);
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #111; }
+    ::-webkit-scrollbar-thumb { background: #ffcc00; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #ffdd33; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-in { animation: fadeIn 0.45s ease-out forwards; }
+    .delay-1 { animation-delay: 0.08s; } .delay-2 { animation-delay: 0.16s; } .delay-3 { animation-delay: 0.24s; } .delay-4 { animation-delay: 0.32s; } .delay-5 { animation-delay: 0.40s; }
+
+    .glow-effect { position: relative; }
+    .glow-effect::after {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 12px;
+      box-shadow: 0 0 15px rgba(255, 204, 0, 0); transition: box-shadow 0.3s ease; pointer-events: none;
     }
-    
-    /* Gradient text */
+    .glow-effect:hover::after { box-shadow: 0 0 15px rgba(255, 204, 0, 0.7); }
+
     .gradient-text {
-      background: linear-gradient(90deg, #ffcc00, #ff9900);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      background: linear-gradient(90deg, #ffcc00, #ff9900); -webkit-background-clip: text;
+      background-clip: text; color: transparent;
     }
-    
-    /* Video showcase header */
-    .showcase-video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 0;
+
+    @media (max-width: 640px) { .movie-card { width: calc(50% - 1rem); } }
+    @media (max-width: 400px) { .movie-card { width: 100%; } }
+
+    /* Modal area tweaks */
+    #playback-modal .aspect-video { aspect-ratio: 16/9; }
+    .quality-btn { 
+      cursor: pointer;
+      transition: all 0.2s ease;
     }
-    
-    .showcase-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%);
-      z-index: 1;
+    .quality-btn.active {
+      background: #ffcc00 !important;
+      color: black !important;
     }
-    
-    .showcase-content {
-      position: relative;
-      z-index: 2;
-    }
-    
-    /* Responsive adjustments */
-    @media (max-width: 640px) {
-      .movie-card {
-        width: calc(50% - 1rem);
-      }
-      .showcase-overlay {
-        background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 100%);
-      }
-      .showcase-content {
-        padding: 1rem;
-      }
-    }
-    
-    @media (max-width: 400px) {
-      .movie-card {
-        width: 100%;
-      }
-    }
-    
-    /* Season selector */
-    .season-selector {
-      scrollbar-width: none;
-    }
-    
-    .season-selector::-webkit-scrollbar {
+    #playerError { display: none; }
+    #keyboard-help {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(0,0,0,0.7);
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 12px;
       display: none;
-    }
-    
-    /* Modal video aspect ratio */
-    .video-container {
-      position: relative;
-      padding-bottom: 56.25%; /* 16:9 */
-      height: 0;
-      overflow: hidden;
-    }
-    
-    .video-container iframe,
-    .video-container video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
     }
   </style>
 </head>
@@ -149,9 +88,9 @@
         <div class="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center">
           <i class="fas fa-shield-alt text-black text-xl"></i>
         </div>
-        <h1 class="text-2xl font-bold gradient-text">I Am Groot</h1>
+        <h1 class="text-2xl font-bold gradient-text">CITADEL</h1>
       </div>
-      
+
       <div class="flex items-center space-x-4">
         <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-800 transition">
           <i class="fas fa-moon text-yellow-500"></i>
@@ -161,11 +100,11 @@
         </button>
       </div>
     </div>
-    
+
     <!-- Search Bar (hidden by default) -->
     <div id="search-bar" class="hidden px-4 pb-4">
       <div class="relative">
-        <input type="text" placeholder="Search episodes..." 
+        <input id="search-input" type="text" placeholder="Search episodes..." 
                class="w-full bg-gray-900 border border-yellow-600/30 rounded-full py-2 px-4 pl-10 text-white focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
         <i class="fas fa-search absolute left-3 top-3 text-yellow-500"></i>
       </div>
@@ -174,46 +113,40 @@
 
   <!-- Main Content -->
   <main class="container mx-auto px-4 py-8">
-    <!-- Hero Section with Video Showcase -->
-    <section class="mb-12 relative overflow-hidden rounded-xl h-64 md:h-96">
-      <video autoplay muted loop class="showcase-video">
-        <source src="https://imdb-video.media-imdb.com/vi210224921/1434659607842-pgv4ql-1691413662477.mp4?Expires=1761973033&Signature=jooeLqjQOOPVTH-~j58~8CEaNt4oDEH-DHLmN~HjUY9oQjVDlPilELMANBnguXzOAXyA9Rq3VRRSdHnjcIJOQjstyTE7XSo22tmQfsbWwZUPUbqfainOzsSrgBVRk4d3BYY7AXpfwX3KXAA3etBp7Lz9FWJyloIW0AG~t4wN8aoito1UEDVH8I-fD9sSm9e9TEITIaKEEcpNmr-61RbmWt6dU7N9Rz0zNmiKQJuOroEJGDtjcedxMwUjUhu2UGGsuLZMys5jBGr1nxso4MRPZu1Mbbhadtyna7wL77dQRNv9v8iEhWRF7jupU8ppu1Vygo5~zzXd-LmDtNp5tvzo9w__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <div class="showcase-overlay"></div>
-      <div class="showcase-content h-full flex flex-col justify-end p-6 md:p-8">
-        <p class="text-gray-300 mb-4 max-w-lg">The complete adventures of Baby Groot. Watch as the adorable Flora Colossus gets into all sorts of mischief across the galaxy.</p>
-        <div class="flex flex-wrap gap-3">
-          
+    <!-- Hero -->
+    <section class="mb-12 relative overflow-hidden rounded-xl">
+      <div class="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent z-10"></div>
+      <img src="https://m.media-amazon.com/images/S/pv-target-images/7cf708aacfcd9cf0afc502de08cceedb147b9360bc339863382d908e6175c229._BR-6_AC_SX720_FMwebp_.jpg" 
+           alt="The Day of the Jackal Banner" class="w-full h-64 md:h-96 object-cover">
+      <div class="absolute bottom-0 left-0 z-20 p-6 md:p-8">
+        <p class="text-gray-300 mb-4 max-w-lg">The complete first season of the high-stakes spy thriller. Betrayal, secrets, and impossible choices. </p>
+        <div class="flex space-x-3">
+          <button id="play-all-btn" class="bg-yellow-600 hover:bg-yellow-700 text-black font-semibold py-2 px-6 rounded-full transition flex items-center">
+            <i class="fas fa-play mr-2"></i> Play All
+          </button>
+          <button class="bg-gray-800 hover:bg-gray-700 text-white font-semibold py-2 px-6 rounded-full transition flex items-center">
+            <i class="fas fa-info-circle mr-2"></i> Details
+          </button>
         </div>
       </div>
     </section>
 
-    <!-- Season Selector -->
-    <div class="flex overflow-x-auto season-selector mb-6 pb-2">
-      <div class="flex space-x-2">
-        <button class="season-btn active bg-yellow-600 text-black px-4 py-2 rounded-full font-medium whitespace-nowrap" data-season="all">All Episodes</button>
-        <button class="season-btn bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-full font-medium whitespace-nowrap" data-season="1">Season 1</button>
-        <button class="season-btn bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-full font-medium whitespace-nowrap" data-season="2">Season 2</button>
-      </div>
-    </div>
-
     <!-- Filters -->
     <div class="flex flex-wrap items-center justify-between mb-8 gap-4">
-      <div class="flex space-x-2 overflow-x-auto pb-2 scrollbar-hide">
-        <button class="filter-btn active bg-yellow-600 text-black px-4 py-1 rounded-full text-sm font-medium">All</button>
-        <button class="filter-btn bg-gray-800 hover:bg-gray-700 px-4 py-1 rounded-full text-sm font-medium">Adventure</button>
-        <button class="filter-btn bg-gray-800 hover:bg-gray-700 px-4 py-1 rounded-full text-sm font-medium">Comedy</button>
-        <button class="filter-btn bg-gray-800 hover:bg-gray-700 px-4 py-1 rounded-full text-sm font-medium">Family</button>
-        <button class="filter-btn bg-gray-800 hover:bg-gray-700 px-4 py-1 rounded-full text-sm font-medium">Sci-Fi</button>
+      <div class="flex space-x-2 overflow-x-auto pb-2">
+        <button class="filter-btn active bg-yellow-600 text-black px-4 py-1 rounded-full text-sm font-medium" data-filter="all">All</button>
+        <button class="filter-btn bg-gray-800 hover:bg-gray-700 px-4 py-1 rounded-full text-sm font-medium" data-filter="thriller">Thriller</button>
+        <button class="filter-btn bg-gray-800 hover:bg-gray-700 px-4 py-1 rounded-full text-sm font-medium" data-filter="drama">Drama</button>
+        <button class="filter-btn bg-gray-800 hover:bg-gray-700 px-4 py-1 rounded-full text-sm font-medium" data-filter="political">Political</button>
+        <button class="filter-btn bg-gray-800 hover:bg-gray-700 px-4 py-1 rounded-full text-sm font-medium" data-filter="crime">Crime</button>
       </div>
-      
+
       <div class="flex items-center space-x-2">
         <span class="text-gray-400 text-sm">Sort by:</span>
-        <select class="bg-gray-900 border border-gray-700 text-white text-sm rounded-full px-3 py-1 focus:outline-none focus:ring-1 focus:ring-yellow-500">
-          <option>Release Date</option>
-          <option>Episode Order</option>
-          <option>Popularity</option>
+        <select id="sort-select" class="bg-gray-900 border border-gray-700 text-white text-sm rounded-full px-3 py-1 focus:outline-none focus:ring-1 focus:ring-yellow-500">
+          <option value="release">Release Date</option>
+          <option value="order">Episode Order</option>
+          <option value="pop">Popularity</option>
         </select>
       </div>
     </div>
@@ -224,9 +157,16 @@
         <i class="fas fa-list-ul text-yellow-500 mr-2"></i>
         Episodes
       </h3>
-      
-      <div id="movies" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-        <!-- Movie cards will be inserted here by JavaScript -->
+
+      <div id="episodes" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+        <!-- Episode cards inserted by JS -->
+      </div>
+    </section>
+
+    
+
+      <div id="original-movie" class="grid grid-cols-1 gap-6">
+        <!-- Original movie card inserted by JS -->
       </div>
     </section>
   </main>
@@ -240,11 +180,11 @@
             <div class="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center">
               <i class="fas fa-shield-alt text-black text-sm"></i>
             </div>
-            <span class="text-xl font-bold gradient-text">I Am Groot</span>
+            <span class="text-xl font-bold gradient-text">CITADEL</span>
           </div>
-          <p class="text-gray-400 text-sm mt-2">© 2023 Marvel Studios Productions. All rights reserved.</p>
+          <p class="text-gray-400 text-sm mt-2">© 2023 Citadel Productions. All rights reserved.</p>
         </div>
-        
+
         <div class="flex space-x-6">
           <a href="#" class="text-gray-400 hover:text-yellow-500 transition"><i class="fab fa-facebook-f"></i></a>
           <a href="#" class="text-gray-400 hover:text-yellow-500 transition"><i class="fab fa-twitter"></i></a>
@@ -254,6 +194,22 @@
       </div>
     </div>
   </footer>
+
+  <!-- Keyboard help -->
+  <div id="keyboard-help">
+    <div class="flex justify-between items-center mb-2">
+      <span class="text-yellow-400 font-bold">Keyboard Shortcuts</span>
+      <button id="close-help" class="text-white">&times;</button>
+    </div>
+    <div class="grid grid-cols-2 gap-2 text-gray-300">
+      <div><span class="font-mono bg-gray-800 px-1 rounded">Space</span> Play/Pause</div>
+      <div><span class="font-mono bg-gray-800 px-1 rounded">F</span> Fullscreen</div>
+      <div><span class="font-mono bg-gray-800 px-1 rounded">←/→</span> Seek</div>
+      <div><span class="font-mono bg-gray-800 px-1 rounded">M</span> Mute</div>
+      <div><span class="font-mono bg-gray-800 px-1 rounded">N</span> Next</div>
+      <div><span class="font-mono bg-gray-800 px-1 rounded">P</span> Previous</div>
+    </div>
+  </div>
 
   <!-- Playback Modal (from Marvel logic, adapted) -->
   <div id="playback-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black bg-opacity-90">
@@ -288,263 +244,481 @@
       <div class="text-center text-gray-400 text-sm mt-1">Keyboard: Space=Play/Pause, ←/→ seek, F=Fullscreen, N=Next, P=Prev, M=Mute</div>
     </div>
   </div>
-  
-<script>
-    // Movie data
-    const movies = [
-      // Season 1
+
+  <script>
+    /***************
+     * Data
+     * (kept from your jackal file)
+     ***************/
+    const episodes = [
       { 
-        title: "Groot's First Steps", 
-        video: "https://cdn30092.ginni386kex.com:443/stream2/i-arch-400/124de233b0783ac68aa5e25dcbcc16b0/MJTMsp1RshGTygnMNRUR2N2MSlnWXZEdMNDZzQWe5MDZzMmdZJTO1R2RWVHZDljekhkSsl1VwYnWtx2cihVT21ERoxmTEdGMNdVW4lFVo1WTXlkeadVW550RNpnTXpUaadlWt9ERZhXWXFVP:1761889510:160.119.251.137:54aea3955bd158abc2f2905d37a34444a65210cf7a73bced4121bad71d4eae85/./1080/index.m3u8", 
-        image: "https://image.tmdb.org/t/p/w300/iecIwrRoq1uZfhJ9XRrZD29Zr4R.jpg",
-        description: "Baby Groot takes his first steps out of his pot, only to learn you have to walk before you can run.",
-        duration: "6 min",
-        season: 1,
-        episode: 1,
-        tags: ["Adventure", "Family"]
+        title: "The Human Enigma", 
+        video: "https://s3ae.evergreenconstruction.store/v4/il/hde6j/cf-master.txt?v=1730755972", 
+        image: "https://m.media-amazon.com/images/S/pv-target-images/7cf708aacfcd9cf0afc502de08cceedb147b9360bc339863382d908e6175c229._BR-6_AC_SX720_FMwebp_.jpg",
+        description: "A former Citadel agent is pulled back into the world of espionage when a mysterious figure from his past resurfaces with critical information.",
+        duration: "48 min"
       },
       { 
-        title: "The Little Guy", 
-        video: "https://cdn30092.ginni386kex.com:443/stream2/i-arch-400/124de233b0783ac68aa5e25dcbcc16b0/MJTMsp1RshGTygnMNRUR2N2MSlnWXZEdMNDZzQWe5MDZzMmdZJTO1R2RWVHZDljekhkSsl1VwYnWtx2cihVT2lleJpnWHllMOp2Z04kaFhnTtVUePdlRppFVsxWW6V0MORVS35EROl2TUVVP:1761889584:160.119.251.137:0d3f105d83835950285668d9530556d608dbecb122448352539b9dbf3ea565fa/./1080/index.m3u8", 
-        image: "https://image.tmdb.org/t/p/w300/6pFcTY18M9EpKQEEZZMzVnX4bMF.jpg",
-        description: "Groot discovers a miniature civilization that believes the seemingly enormous tree toddler is the hero they've been waiting for.",
-        duration: "4 min",
-        season: 1,
-        episode: 2,
-        tags: ["Adventure", "Comedy"]
+        title: "Spies Appear In Night Time", 
+        video: "https://sunl.aurorapathcreative.space/v4/il/ty38g/index-f1-v1-a1.txt", 
+        image: "https://m.media-amazon.com/images/S/pv-target-images/ec29785457e5f3d56591cf719a52f2214f56c1b5e73a8008eb1a19403b3a5fe7._BR-6_AC_SX720_FMwebp_.jpg",
+        description: "Under the cover of darkness, agents from rival factions converge on a single location, each with their own hidden agenda.",
+        duration: "52 min"
       },
       { 
-        title: "Groot's Pursuit", 
-        video: "https://cdn30092.ginni386kex.com:443/stream2/i-arch-400/124de233b0783ac68aa5e25dcbcc16b0/MJTMsp1RshGTygnMNRUR2N2MSlnWXZEdMNDZzQWe5MDZzMmdZJTO1R2RWVHZDljekhkSsl1VwYnWtx2cihVT21EVjJTTHpEbNRVTwkVbah2TU1Eea1WWx4EVStWWtVVMORlUo5keRBTT61UP:1761889608:160.119.251.137:cfbfbf1f2f6f9a7111af964cf2db7e7c68756fbbb26492d7035dbf4f8b62b275/./1080/index.m3u8", 
-        image: "https://image.tmdb.org/t/p/w300/nv0q5V1vGwRVO4Rv3MOEmniUbWj.jpg",
-        description: "Groot investigates a spooky noise that's been haunting the Quadrant, which leads to an intense dance off.",
-        duration: "4 min",
-        season: 1,
-        episode: 3,
-        tags: ["Comedy", "Sci-Fi"]
+        title: "Infinite Shadows", 
+        video: "https://sbi6.marvellaholdings.sbs/v4/il/k89pz/cf-master.txt?v=1730756078", 
+        image: "https://m.media-amazon.com/images/S/pv-target-images/419b4b78422a757495927075fa7937109e1afcb5ecd822195b848616eb6eaa3b._BR-6_AC_SX720_FMwebp_.jpg",
+        description: "As the web of deception grows more complex, our agents must navigate a maze of shifting alliances where nothing is as it seems.",
+        duration: "49 min"
       },
       { 
-        title: "Groot Takes a Bath", 
-        video: "https://cdn30092.ginni386kex.com:443/stream2/i-arch-400/124de233b0783ac68aa5e25dcbcc16b0/MJTMsp1RshGTygnMNRUR2N2MSlnWXZEdMNDZzQWe5MDZzMmdZJTO1R2RWVHZDljekhkSsl1VwYnWtx2cihVT2pVbNhXTtlEeZpHZr9EVjFzTUVVeNJTS41kaJFTWt1ENOp3Z65kaJh3TU1UP:1761889631:160.119.251.137:3c7b50797b9383585be727bd6e7d29cfe0f31365d2b0d5dc93ece90462fae1eb/./1080/index.m3u8", 
-        image: "https://image.tmdb.org/t/p/w300/stKeLppDBwscxoE9RXxNyrur27G.jpg",
-        description: "Everybody needs some alone time to relax and wash up, but things go quite differently when you're a Flora Colossi toddler.",
-        duration: "4 min",
-        season: 1,
-        episode: 4,
-        tags: ["Comedy", "Family"]
+        title: "Tell Her Everything", 
+        video: "https://s5zt.viatrixartstudio.space/v4/ty/3fcqs/index-f2-v1-a1.txt", 
+        image: "https://m.media-amazon.com/images/S/pv-target-images/0bc6a90b9ed854667c73f00b061c7c2f11c945f753ac9ba274487388c994f882._BR-6_AC_SX720_FMwebp_.jpg",
+        description: "A critical decision must be made - reveal the truth and risk everything, or maintain the lie and lose what matters most.",
+        duration: "51 min"
       },
       { 
-        title: "Magnum Opus", 
-        video: "https://cdn30092.ginni386kex.com:443/stream2/i-arch-400/124de233b0783ac68aa5e25dcbcc16b0/MJTMsp1RshGTygnMNRUR2N2MSlnWXZEdMNDZzQWe5MDZzMmdZJTO1R2RWVHZDljekhkSsl1VwYnWtx2cihVT2llaCtmWHFFeOpWWy8EVZBTWqtmMZJTR61keZp3TX5kaa1WTx8EVFVjWHlUP:1761889659:160.119.251.137:9fb5f1165ca690d25ae9355ddf668ec784a71f9fad07d9bd11e3c6ced9880fa6/./1080/index.m3u8", 
-        image: "https://image.tmdb.org/t/p/w300/cnhzecqkKHBIyM4QMbxRy5fbW3l.jpg",
-        description: "Groot sets out to paint a family portrait of himself and the Guardians, only to discover just how messy the artistic process can be.",
-        duration: "4 min",
-        season: 1,
-        episode: 5,
-        tags: ["Comedy", "Family"]
-      },
-      
-      // Season 2
-      { 
-        title: "Are You My Groot?", 
-        video: "https://cdn30092.ginni386kex.com:443/stream2/i-arch-400/124de233b0783ac68aa5e25dcbcc16b0/MJTMsp1RshGTygnMNRUR2N2MSlnWXZEdMNDZzQWe5MDZzMmdZJTO1R2RWVHZDljekhkSsl1VwYnWtx2cihVT2llMWpWWqRWbORVQwkleJFjT6lEeO1mUppFRKp2TUlVeNpXUw0kaNhnTyEVP:1761889890:160.119.251.137:eb0a7482dfb696bf3a008a1bc5beb578b98b0e0b75cea5d523af8634a21fadc2/./1080/index.m3u8", 
-        image: "https://image.tmdb.org/t/p/w300/rJelmgL1yTFfH2PhC3LufMhYQko.jpg",
-        description: "Groot stumbles across a strange egg, adopting the little creature that emerges as his own.",
-        duration: "5 min",
-        season: 2,
-        episode: 1,
-        tags: ["Adventure", "Comedy"]
+        title: "Time Renders Us Enemies", 
+        video: "https://s6sy.silverpathway.sbs/v4/ty/id661/cf-master.txt?v=1731438121", 
+        image: "https://m.media-amazon.com/images/S/pv-target-images/58bd4313c91e6769a7399a3c22ee3692dd008c38a972c8984654e2d22725af45._BR-6_AC_SX720_FMwebp_.jpg",
+        description: "Past actions come back to haunt our agents as former allies become adversaries in a high-stakes confrontation.",
+        duration: "47 min"
       },
       { 
-        title: "Groot Noses Around", 
-        video: "https://hk1.shegu.net/vip/p1/tv_mp4_h264/1/9/18359/2/tv.18359.S2E2.720p.H264.20230906095803.mp4?KEY1=2N77eS_ENXz_khmBa4E-Xw&KEY2=1761900880&KEY3=1104596&KEY4=world&KEY7=febbox_video_quality_list_v3&KEY8=1104596", 
-        image: "https://image.tmdb.org/t/p/w300/bf39ykfbUodisUirJXcUbI8bRFe.jpg",
-        description: "When Groot gets the sense of smell, he learns not to stick his new nose where it doesn't belong.",
-        duration: "5 min",
-        season: 2,
-        episode: 2,
-        tags: ["Adventure", "Family"]
+        title: "Secrets In Night Need Early Rains", 
+        video: "https://sxix.skylineforge.space/v4/ty/hde6b/index-f2-v1-a1.txt", 
+        image: "https://m.media-amazon.com/images/S/pv-target-images/3c1ed5d5eb7012b8a83a09fee5523cb733fdc3bb4db8ff3ae0c1476c406b28df._BR-6_AC_SX720_FMwebp_.jpg",
+        description: "The season finale brings all the threads together as hidden truths are revealed and loyalties are put to the ultimate test.",
+        duration: "58 min"
       },
-      { 
-        title: "Groot's Snow Day", 
-        video: "https://hk1.shegu.net/vip/p1/tv_mp4_h264/1/9/18359/2/tv.18359.S2E3.720p.H264.20230906095803.mp4?KEY1=7yAvlEmEpC7E4zP9UsU9xw&KEY2=1761900922&KEY3=1101258&KEY4=world&KEY7=febbox_video_quality_list_v3&KEY8=1101258", 
-        image: "https://image.tmdb.org/t/p/w300/6H9lUVRUJyWn7t0VAix83TszrfJ.jpg",
-        description: "Groot builds a snowman with scraps of junk, creating an unstoppable snowman-robot that wreaks havoc.",
-        duration: "4 min",
-        season: 2,
-        episode: 3,
-        tags: ["Comedy", "Family"]
-      },
-      { 
-        title: "Groot's Sweet Treat", 
-        video: "https://hk1.shegu.net/vip/p1/tv_mp4_h264/1/9/18359/2/tv.18359.S2E4.720p.H264.20230906095804.mp4?KEY1=1SiVBFzSXgsMFw30KBmu7A&KEY2=1761900955&KEY3=1101678&KEY4=world&KEY7=febbox_video_quality_list_v3&KEY8=1101678", 
-        image: "https://image.tmdb.org/t/p/w300/4PSxBL0Muya07GIteMxJhA4A2iB.jpg",
-        description: "Groot frantically scours the ship for coins as an intergalactic ice cream truck approaches.",
-        duration: "6 min",
-        season: 2,
-        episode: 4,
-        tags: ["Adventure", "Family"]
-      },
-      { 
-        title: "Groot and the Great Prophecy", 
-        video: "https://hk1.shegu.net/vip/p1/tv_mp4_h264/1/9/18359/2/tv.18359.S2E5.720p.H264.20230906095803.mp4?KEY1=YjV0luXmtqhgnxKSjNZhHA&KEY2=1761900989&KEY3=1101678&KEY4=world&KEY7=febbox_video_quality_list_v3&KEY8=1101678", 
-        image: "https://image.tmdb.org/t/p/w300/o7gblk3nygQh2lEIjCHEdLK3RHA.jpg",
-        description: "Groot lands in the heart of an ancient temple with a prophecy he must fulfill to save the universe.",
-        duration: "5 min",
-        season: 2,
-        episode: 5,
-        tags: ["Comedy", "Sci-Fi"]
-      }
     ];
 
-    // DOM elements
-    const container = document.getElementById('movies');
+    /*********************
+     * UI element references
+     *********************/
+    const episodesContainer = document.getElementById('episodes');
+    const originalMovieContainer = document.getElementById('original-movie');
     const searchBtn = document.getElementById('search-btn');
     const searchBar = document.getElementById('search-bar');
     const themeToggle = document.getElementById('theme-toggle');
     const playbackModal = document.getElementById('playback-modal');
-    const closeModal = document.getElementById('close-modal');
+    const closeModalBtn = document.getElementById('close-modal');
     const modalVideo = document.getElementById('modal-video');
     const modalTitle = document.getElementById('modal-title');
-    const modalDescription = document.getElementById('modal-description');
-    const seasonEpisode = document.getElementById('season-episode');
-    const episodeDuration = document.getElementById('episode-duration');
-    const seasonBtns = document.querySelectorAll('.season-btn');
-    const filterBtns = document.querySelectorAll('.filter-btn');
+    const qualityControls = document.getElementById('qualityControls');
+    const playerError = document.getElementById('playerError');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const fullscreenBtn = document.getElementById('fullscreenBtn');
+    const muteBtn = document.getElementById('muteBtn');
+    const searchInput = document.getElementById('search-input');
+    const playAllBtn = document.getElementById('play-all-btn');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const sortSelect = document.getElementById('sort-select');
 
-    // Current filter state
-    let currentSeason = 'all';
-    let currentFilter = 'All';
+    // State for modal
+    let currentList = []; // filtered list
+    let currentVideo = null; // { index: number, item: {} }
+    let currentFilter = 'all';
+    let currentSort = 'release';
 
-    // Initialize the page
-    function initPage() {
-      renderMovies();
-      
-      // Season buttons
-      seasonBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-          document.querySelector('.season-btn.active').classList.remove('active', 'bg-yellow-600', 'text-black');
-          this.classList.add('active', 'bg-yellow-600', 'text-black');
-          currentSeason = this.dataset.season;
-          renderMovies();
-        });
-      });
+    /***********************
+     * Helper functions (from Marvel logic)
+     ***********************/
+    function isStream(url) {
+      return /\.(m3u8|txt)$/i.test(url);
+    }
+    function isMP4(url) {
+      return /\.mp4(\?|$)/i.test(url);
+    }
 
-      // Filter buttons
-      filterBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-          document.querySelector('.filter-btn.active').classList.remove('active', 'bg-yellow-600', 'text-black');
-          this.classList.add('active', 'bg-yellow-600', 'text-black');
-          currentFilter = this.textContent;
-          renderMovies();
-        });
+    function showError(msg) {
+      playerError.textContent = msg;
+      playerError.classList.remove('hidden');
+      setTimeout(() => playerError.classList.add('hidden'), 3500);
+    }
+
+    /***********************
+     * Rendering
+     ***********************/
+    function renderEpisodes() {
+      // Build filtered list (episodes only)
+      const term = (searchInput.value || '').toLowerCase().trim();
+      let list = episodes.slice();
+
+      // Simple filter by data-filter on buttons (this demo uses no tags, so filters are illustrative)
+      if (currentFilter !== 'all') {
+        // Example: keep all for now — placeholder for real tag-based filtering
+        // list = list.filter(e => (e.tags||[]).includes(currentFilter));
+      }
+
+      // search
+      if (term) {
+        list = list.filter(e => e.title.toLowerCase().includes(term) || (e.description||'').toLowerCase().includes(term));
+      }
+
+      // sort (episode order is original array order; leave as-is or implement)
+      if (currentSort === 'release') {
+        // by year then index
+        list.sort((a,b) => (a.year||0) - (b.year||0));
+      } else if (currentSort === 'order') {
+        // keep original order
+      } else if (currentSort === 'pop') {
+        list.sort((a,b) => (b.rating||0) - (a.rating||0));
+      }
+
+      // store for modal navigation (episodes only). We'll append originalMovie as last item separately later.
+      currentList = list.slice();
+
+      episodesContainer.innerHTML = '';
+      list.forEach((ep, idx) => {
+        const card = createEpisodeCard(ep, idx);
+        episodesContainer.appendChild(card);
       });
     }
 
-    // Render movies based on current filters
-    function renderMovies() {
-      container.innerHTML = '';
-      
-      let filteredMovies = movies;
-      
-      // Apply season filter
-      if (currentSeason !== 'all') {
-        filteredMovies = filteredMovies.filter(movie => movie.season == currentSeason);
-      }
-      
-      // Apply tag filter
-      if (currentFilter !== 'All') {
-        filteredMovies = filteredMovies.filter(movie => movie.tags.includes(currentFilter));
-      }
-      
-      // Create movie cards
-      filteredMovies.forEach((movie, index) => {
-        const card = document.createElement('div');
-        card.className = `movie-card fade-in delay-${index % 5} glow-effect`;
-        card.innerHTML = `
-          <div class="relative group overflow-hidden rounded-xl cursor-pointer">
-            <img src="${movie.image}" alt="${movie.title}" 
-                 class="w-full h-48 sm:h-56 md:h-64 object-cover rounded-xl transition duration-500 group-hover:scale-105">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-              <div>
-                <h3 class="text-white font-semibold text-lg">${movie.title}</h3>
-                <p class="text-gray-300 text-sm">${movie.duration}</p>
-              </div>
-            </div>
-            <div class="absolute top-3 right-3 bg-black bg-opacity-70 text-yellow-500 rounded-full w-10 h-10 flex items-center justify-center">
-              <i class="fas fa-play"></i>
+    function createEpisodeCard(ep, idx) {
+      const outer = document.createElement('div');
+      outer.className = `movie-card fade-in delay-${(idx%5)+1} glow-effect`;
+      outer.innerHTML = `
+        <div class="relative group overflow-hidden rounded-xl cursor-pointer">
+          <img src="${ep.image}" alt="${ep.title}" class="w-full h-48 sm:h-56 md:h-64 object-cover rounded-xl transition duration-500 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+            <div>
+              <h3 class="text-white font-semibold text-lg">${ep.title}</h3>
+              <p class="text-gray-300 text-sm">${ep.runtime}</p>
             </div>
           </div>
-          <div class="mt-3">
-            <h3 class="text-white font-medium">${movie.title}</h3>
-            <div class="flex items-center text-gray-400 text-sm mt-1">
-              <span>S${movie.season} • E${movie.episode}</span>
-              <span class="mx-2">•</span>
-              <span>${movie.duration}</span>
-            </div>
-            <div class="flex flex-wrap gap-1 mt-2">
-              ${movie.tags.map(tag => `<span class="bg-gray-800 text-gray-300 text-xs px-2 py-0.5 rounded-full">${tag}</span>`).join('')}
-            </div>
+          <div class="absolute top-3 right-3 bg-black bg-opacity-70 text-yellow-500 rounded-full w-10 h-10 flex items-center justify-center">
+            <i class="fas fa-play"></i>
           </div>
-        `;
-        
-        card.addEventListener('click', () => {
-          openModal(movie);
-        });
-        
-        container.appendChild(card);
+        </div>
+        <div class="mt-3">
+          <h3 class="text-white font-medium">${ep.title}</h3>
+          <div class="flex items-center text-gray-400 text-sm mt-1">
+            <span>S1 • E${idx + 1}</span><span class="mx-2">•</span><span>${ep.runtime}</span>
+          </div>
+        </div>
+      `;
+      outer.addEventListener('click', () => {
+        // When opening an episode, ensure currentList includes episodes + original at the end for navigation
+        const combined = currentList.concat([originalMovie]); // last index is original movie
+        openPlaybackFor(combined, idx, true);
       });
+      return outer;
     }
 
-    // Open modal with movie details
-    function openModal(movie) {
-      modalTitle.textContent = movie.title;
-      modalDescription.textContent = movie.description;
-      seasonEpisode.textContent = `S${movie.season} • E${movie.episode}`;
-      episodeDuration.textContent = movie.duration;
-      modalVideo.src = movie.video;
-      
+    function renderOriginalMovieCard() {
+      originalMovieContainer.innerHTML = '';
+      const idx = episodes.length; // used only if we combine lists
+      const card = document.createElement('div');
+      card.className = `movie-card fade-in delay-1 glow-effect`;
+      card.innerHTML = `
+        <div class="relative group overflow-hidden rounded-xl cursor-pointer">
+          <img src="${originalMovie.image}" alt="${originalMovie.title}" class="w-full h-48 sm:h-56 md:h-64 object-cover rounded-xl transition duration-500 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+            <div>
+              <h3 class="text-white font-semibold text-lg">${originalMovie.title}</h3>
+              <p class="text-gray-300 text-sm">${originalMovie.runtime}</p>
+            </div>
+          </div>
+          <div class="absolute top-3 right-3 bg-black bg-opacity-70 text-yellow-500 rounded-full w-10 h-10 flex items-center justify-center">
+            <i class="fas fa-play"></i>
+          </div>
+        </div>
+        <div class="mt-3">
+          <h3 class="text-white font-medium">${originalMovie.title}</h3>
+          <div class="flex items-center text-gray-400 text-sm mt-1">
+            <span>${originalMovie.year}</span><span class="mx-2">•</span><span>${originalMovie.runtime}</span>
+          </div>
+        </div>
+      `;
+      card.addEventListener('click', () => {
+        // combine episodes + original so prev/next navigate sensibly
+        const combined = episodes.slice().concat([originalMovie]);
+        openPlaybackFor(combined, combined.length - 1, false);
+      });
+      originalMovieContainer.appendChild(card);
+    }
+
+    /***********************
+     * Debounce helper
+     ***********************/
+    function debounce(func, wait) {
+      let timeout;
+      return function(...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+      };
+    }
+
+    /***********************
+     * Playback logic
+     * - supports:
+     *   - string mp4 (play in modal)
+     *   - string .m3u8/.txt (redirect to player.html)
+     *   - object { low, medium, high } (quality controls; prefer high)
+     ***********************/
+    function openPlaybackFor(listArray, indexToOpen, isEpisode) {
+      if (!Array.isArray(listArray) || listArray.length === 0) return showError("No videos available");
+      const item = listArray[indexToOpen];
+      if (!item) return showError("Item not found");
+
+      // If video is an object (multiple qualities) check for stream vs mp4 inside values
+      const videoVal = item.video;
+      let videoCombinedValues = '';
+      if (typeof videoVal === 'object') videoCombinedValues = Object.values(videoVal).join(' ');
+
+      // If stream (m3u8 / txt) and NOT mp4 — redirect to player.html (external player)
+      if ((typeof videoVal === 'string' && isStream(videoVal) && !isMP4(videoVal))
+        || (typeof videoVal === 'object' && isStream(videoCombinedValues) && !isMP4(videoCombinedValues))) {
+        // Redirect to player page with encoded video(s)
+        const encoded = encodeURIComponent(typeof videoVal === 'object' ? videoCombinedValues : videoVal);
+        const title = encodeURIComponent(item.title || 'Video');
+        window.location.href = `player.html?title=${title}&video=${encoded}`;
+        return;
+      }
+
+      // Else, play in modal (MP4 or direct playable)
+      playInModal(listArray, indexToOpen);
+    }
+
+    function playInModal(listArr, index) {
+      const item = listArr[index];
+      if (!item) return showError("Video not available");
+
+      // Show loading state
+      const loadingOverlay = document.createElement('div');
+      loadingOverlay.className = 'loading-overlay';
+      loadingOverlay.innerHTML = '<div class="spinner"></div>';
+      playbackModal.querySelector('.aspect-video').appendChild(loadingOverlay);
+
+      // Build quality controls if item.video is object
+      qualityControls.innerHTML = '';
+      if (typeof item.video === 'object') {
+        const entries = Object.entries(item.video);
+        entries.forEach(([quality, url], i) => {
+          const btn = document.createElement('button');
+          btn.className = `quality-btn px-3 py-1 mx-1 rounded bg-gray-700 hover:bg-gray-600 text-sm text-white ${i === 0 ? 'active' : ''}`;
+          btn.dataset.url = url;
+          btn.dataset.quality = quality;
+          btn.innerText = quality.toUpperCase();
+          qualityControls.appendChild(btn);
+        });
+      }
+
+      // Title
+      modalTitle.textContent = item.title || '';
+
+      // Choose src: prefer high -> medium -> low when object
+      let src = '';
+      if (typeof item.video === 'object') {
+        src = item.video.high || item.video.medium || item.video.low || Object.values(item.video)[0];
+      } else {
+        src = item.video;
+      }
+
+      // Set video source and show modal
+      modalVideo.pause();
+      modalVideo.src = src;
       playbackModal.classList.remove('hidden');
       document.body.style.overflow = 'hidden';
+      currentVideo = { index, list: listArr, item };
+
+      modalVideo.addEventListener('canplay', function onCanPlay() {
+        loadingOverlay.remove();
+        modalVideo.removeEventListener('canplay', onCanPlay);
+        // Attempt autoplay; if not allowed show notice but still display modal
+        modalVideo.play().catch(() => {
+          showError("Autoplay blocked — press play to start.");
+        });
+      }, { once: true });
+
+      modalVideo.addEventListener('error', function onError() {
+        loadingOverlay.remove();
+        modalVideo.removeEventListener('error', onError);
+        showError("Failed to load video. It may be blocked or unavailable.");
+      }, { once: true });
+
+      updatePrevNextButtons();
     }
 
-    // Close modal
+    function updatePrevNextButtons() {
+      if (!currentVideo || !Array.isArray(currentVideo.list)) {
+        prevBtn.disabled = nextBtn.disabled = true;
+        return;
+      }
+      prevBtn.disabled = currentVideo.index <= 0;
+      nextBtn.disabled = currentVideo.index >= currentVideo.list.length - 1;
+    }
+
     function closeModalHandler() {
-      playbackModal.classList.add('hidden');
       modalVideo.pause();
+      modalVideo.src = '';
+      playbackModal.classList.add('hidden');
       document.body.style.overflow = '';
+      currentVideo = null;
     }
 
-    // Event listeners
-    searchBtn.addEventListener('click', () => {
-      searchBar.classList.toggle('hidden');
+    function togglePlayPause() {
+      modalVideo.paused ? modalVideo.play().catch(()=>showError('Play blocked')) : modalVideo.pause();
+    }
+    function seek(seconds) {
+      try { modalVideo.currentTime = Math.max(0, (modalVideo.currentTime || 0) + seconds); } catch(e){ /* ignore */ }
+    }
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        // try video element first (prefers fullscreen just for video)
+        (modalVideo.requestFullscreen?.() || document.documentElement.requestFullscreen?.()).catch(err => showError("Fullscreen failed: " + (err.message || err)));
+      } else {
+        document.exitFullscreen?.();
+      }
+    }
+    function toggleMute() {
+      modalVideo.muted = !modalVideo.muted;
+      muteBtn.innerHTML = modalVideo.muted ? '<i class="fas fa-volume-mute mr-1"></i> Unmute' : '<i class="fas fa-volume-up mr-1"></i> Mute';
+    }
+
+    function playNext() {
+      if (!currentVideo || !Array.isArray(currentVideo.list)) return;
+      if (currentVideo.index < currentVideo.list.length - 1) {
+        playInModal(currentVideo.list, currentVideo.index + 1);
+      } else {
+        showError("No next video in this list.");
+      }
+    }
+    function playPrevious() {
+      if (!currentVideo || !Array.isArray(currentVideo.list)) return;
+      if (currentVideo.index > 0) {
+        playInModal(currentVideo.list, currentVideo.index - 1);
+      } else {
+        showError("No previous video in this list.");
+      }
+    }
+
+    /***********************
+     * Event listeners
+     ***********************/
+    // Modal control buttons
+    closeModalBtn.addEventListener('click', closeModalHandler);
+    prevBtn.addEventListener('click', playPrevious);
+    nextBtn.addEventListener('click', playNext);
+    fullscreenBtn.addEventListener('click', toggleFullscreen);
+    muteBtn.addEventListener('click', toggleMute);
+
+    // clicking outside modal content closes it
+    playbackModal.addEventListener('click', (e) => {
+      if (e.target === playbackModal) closeModalHandler();
     });
 
+    // Quality selector (event delegation)
+    qualityControls.addEventListener('click', (e) => {
+      const t = e.target;
+      if (!t.dataset || !t.dataset.url) return;
+      const url = t.dataset.url;
+      const currentTime = modalVideo.currentTime || 0;
+      modalVideo.src = url;
+      modalVideo.currentTime = currentTime;
+      modalVideo.play().catch(()=>showError("Click play to resume."));
+    });
+
+    // Keyboard shortcuts when modal open
+    document.addEventListener('keydown', (e) => {
+      if (playbackModal.classList.contains('hidden')) {
+        if (e.key === '?') {
+          document.getElementById('keyboard-help').style.display = 'block';
+        }
+        return;
+      }
+      const key = e.key.toLowerCase();
+      if (key === 'escape') closeModalHandler();
+      else if (key === ' ') { e.preventDefault(); togglePlayPause(); }
+      else if (key === 'arrowright') seek(10);
+      else if (key === 'arrowleft') seek(-10);
+      else if (key === 'f') toggleFullscreen();
+      else if (key === 'm') toggleMute();
+      else if (key === 'n') playNext();
+      else if (key === 'p') playPrevious();
+      else if (key === '?') {
+        document.getElementById('keyboard-help').style.display = 'block';
+      }
+    });
+
+    // Close keyboard help
+    document.getElementById('close-help').addEventListener('click', () => {
+      document.getElementById('keyboard-help').style.display = 'none';
+    });
+
+    // Quality button active state
+    qualityControls.addEventListener('click', (e) => {
+      const t = e.target;
+      if (!t.dataset || !t.dataset.url) return;
+      
+      // Update active state
+      document.querySelectorAll('.quality-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      t.classList.add('active');
+      
+      const url = t.dataset.url;
+      const currentTime = modalVideo.currentTime || 0;
+      modalVideo.src = url;
+      modalVideo.currentTime = currentTime;
+      modalVideo.play().catch(()=>showError("Click play to resume."));
+    });
+
+    // Search toggle
+    searchBtn.addEventListener('click', () => searchBar.classList.toggle('hidden'));
+
+    // Theme toggle (simple invert)
     themeToggle.addEventListener('click', () => {
       document.body.classList.toggle('bg-gray-100');
       document.body.classList.toggle('text-gray-900');
       document.body.classList.toggle('bg-black');
       document.body.classList.toggle('text-gray-100');
-      
       const icon = themeToggle.querySelector('i');
-      if (document.body.classList.contains('bg-black')) {
-        icon.classList.remove('fa-sun');
-        icon.classList.add('fa-moon');
-      } else {
-        icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun');
-      }
+      if (document.body.classList.contains('bg-black')) { icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); }
+      else { icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
     });
 
-    closeModal.addEventListener('click', closeModalHandler);
-    playbackModal.addEventListener('click', function(e) {
-      if (e.target === this) closeModalHandler();
+    // Filter buttons
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelector('.filter-btn.active')?.classList.remove('active', 'bg-yellow-600', 'text-black');
+        this.classList.add('active', 'bg-yellow-600', 'text-black');
+        currentFilter = this.dataset.filter || 'all';
+        renderEpisodes();
+      });
     });
 
-    // Initialize the page when loaded
+    // Sort select
+    sortSelect.addEventListener('change', (e) => {
+      currentSort = e.target.value || 'release';
+      renderEpisodes();
+    });
+
+    // Search input (live with debounce)
+    searchInput.addEventListener('input', debounce(() => renderEpisodes(), 300));
+
+    // Play all button: play first episode then rely on nextBtn behavior
+    playAllBtn.addEventListener('click', () => {
+      const combined = episodes.slice().concat([originalMovie]);
+      if (combined.length > 0) openPlaybackFor(combined, 0, true);
+    });
+
+    // Prevent accidental navigation on clicking card links (no links here)
+
+    /***********************
+     * Initialize page
+     ***********************/
+    function initPage() {
+      renderEpisodes();
+      renderOriginalMovieCard();
+    }
+
     window.addEventListener('DOMContentLoaded', initPage);
   </script>
-
-  
 </body>
 </html>
