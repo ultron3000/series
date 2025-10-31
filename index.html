@@ -23,57 +23,39 @@
       background: #ffdd33;
     }
     
-    /* Custom animations */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
     
-    .fade-in {
-      animation: fadeIn 0.5s ease-out forwards;
-    }
-    
+    .fade-in { animation: fadeIn 0.5s ease-out forwards; }
     .delay-1 { animation-delay: 0.1s; }
     .delay-2 { animation-delay: 0.2s; }
     .delay-3 { animation-delay: 0.3s; }
     .delay-4 { animation-delay: 0.4s; }
     .delay-5 { animation-delay: 0.5s; }
     
-    /* Glow effect */
-    .glow-effect {
-      position: relative;
-    }
-    
+    .glow-effect { position: relative; }
     .glow-effect::after {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      inset: 0;
       border-radius: 12px;
       box-shadow: 0 0 15px rgba(255, 204, 0, 0);
       transition: box-shadow 0.3s ease;
       pointer-events: none;
     }
+    .glow-effect:hover::after { box-shadow: 0 0 15px rgba(255, 204, 0, 0.7); }
     
-    .glow-effect:hover::after {
-      box-shadow: 0 0 15px rgba(255, 204, 0, 0.7);
-    }
-    
-    /* Gradient text */
     .gradient-text {
       background: linear-gradient(90deg, #ffcc00, #ff9900);
       -webkit-background-clip: text;
-      background-clip: text;
       color: transparent;
     }
     
-    /* Video showcase header */
     .showcase-video {
       position: absolute;
-      top: 0;
-      left: 0;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -82,213 +64,115 @@
     
     .showcase-overlay {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      inset: 0;
       background: linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%);
       z-index: 1;
     }
-    
-    .showcase-content {
-      position: relative;
-      z-index: 2;
-    }
-    
-    /* Responsive adjustments */
-    @media (max-width: 640px) {
-      .movie-card {
-        width: calc(50% - 1rem);
-      }
-      .showcase-overlay {
-        background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 100%);
-      }
-      .showcase-content {
-        padding: 1rem;
-      }
-    }
-    
-    @media (max-width: 400px) {
-      .movie-card {
-        width: 100%;
-      }
-    }
-    
-    /* Season selector */
-    .season-selector {
-      scrollbar-width: none;
-    }
-    
-    .season-selector::-webkit-scrollbar {
-      display: none;
-    }
-    
-    /* Modal video aspect ratio */
+    .showcase-content { position: relative; z-index: 2; }
+
     .video-container {
       position: relative;
-      padding-bottom: 56.25%; /* 16:9 */
+      padding-bottom: 56.25%;
       height: 0;
-      overflow: hidden;
     }
-    
+
     .video-container iframe,
     .video-container video {
       position: absolute;
-      top: 0;
-      left: 0;
+      inset: 0;
       width: 100%;
       height: 100%;
     }
   </style>
 </head>
 <body class="bg-black text-gray-100 min-h-screen">
-  <!-- Header -->
-  <header class="sticky top-0 z-50 bg-black bg-opacity-90 backdrop-blur-sm border-b border-yellow-600/20">
-    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <div class="flex items-center space-x-2">
-        <div class="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center">
-          <i class="fas fa-shield-alt text-black text-xl"></i>
-        </div>
-        <h1 class="text-2xl font-bold gradient-text">I Am Groot</h1>
+
+<header class="sticky top-0 z-50 bg-black bg-opacity-90 backdrop-blur-sm border-b border-yellow-600/20">
+  <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-2">
+      <div class="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center">
+        <i class="fas fa-shield-alt text-black text-xl"></i>
       </div>
-      
-      <div class="flex items-center space-x-4">
-        <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-800 transition" aria-pressed="true">
-          <i class="fas fa-moon text-yellow-500"></i>
-        </button>
-        <button id="search-btn" class="p-2 rounded-full hover:bg-gray-800 transition" aria-pressed="false">
-          <i class="fas fa-search text-yellow-500"></i>
-        </button>
-      </div>
+      <h1 class="text-2xl font-bold gradient-text">I Am Groot</h1>
     </div>
     
-    <!-- Search Bar (hidden by default) -->
-    <div id="search-bar" class="hidden px-4 pb-4">
-      <div class="relative">
-        <input id="search-input" type="text" placeholder="Search episodes..." 
-               class="w-full bg-gray-900 border border-yellow-600/30 rounded-full py-2 px-4 pl-10 text-white focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
-        <i class="fas fa-search absolute left-3 top-3 text-yellow-500"></i>
-      </div>
-    </div>
-  </header>
-
-  <!-- Main Content -->
-  <main class="container mx-auto px-4 py-8">
-    <!-- Hero Section with Video Showcase -->
-    <section class="mb-12 relative overflow-hidden rounded-xl h-64 md:h-96">
-      <video autoplay muted loop class="showcase-video">
-        <source src="https://imdb-video.media-imdb.com/vi210224921/1434659607842-pgv4ql-1691413662477.mp4?Expires=1761973033&Signature=jooeLqjQOOPVTH-~j58~8CEaNt4oDEH-DHLmN~HjUY9oQjVDlPilELMANBnguXzOAXyA9Rq3VRRSdHnjcIJOQjstyTE7XSo22tmQfsbWwZUPUbqfainOzsSrgBVRk4d3BYY7AXpfwX3KXAA3etBp7Lz9FWJyloIW0AG~t4wN8aoito1UEDVH8I-fD9sSm9e9TEITIaKEEcpNmr-61RbmWt6dU7N9Rz0zNmiKQJuOroEJGDtjcedxMwUjUhu2UGGsuLZMys5jBGr1nxso4MRPZu1Mbbhadtyna7wL77dQRNv9v8iEhWRF7jupU8ppu1Vygo5~zzXd-LmDtNp5tvzo9w__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <div class="showcase-overlay"></div>
-      <div class="showcase-content h-full flex flex-col justify-end p-6 md:p-8">
-        <p class="text-gray-300 mb-4 max-w-lg">The complete adventures of Baby Groot. Watch as the adorable Flora Colossus gets into all sorts of mischief across the galaxy.</p>
-        <div class="flex flex-wrap gap-3">
-          
-        </div>
-      </div>
-    </section>
-
-    <!-- Season Selector -->
-    <div class="flex overflow-x-auto season-selector mb-6 pb-2">
-      <div class="flex space-x-2">
-        <button class="season-btn active bg-yellow-600 text-black px-4 py-2 rounded-full font-medium whitespace-nowrap" data-season="all">All Episodes</button>
-        <button class="season-btn bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-full font-medium whitespace-nowrap" data-season="1">Season 1</button>
-        <button class="season-btn bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-full font-medium whitespace-nowrap" data-season="2">Season 2</button>
-      </div>
-    </div>
-
-    <!-- Filters -->
-    <div class="flex flex-wrap items-center justify-between mb-8 gap-4">
-      <div class="flex space-x-2 overflow-x-auto pb-2 scrollbar-hide">
-        <button class="filter-btn active bg-yellow-600 text-black px-4 py-1 rounded-full text-sm font-medium">All</button>
-        <button class="filter-btn bg-gray-800 hover:bg-gray-700 px-4 py-1 rounded-full text-sm font-medium">Adventure</button>
-        <button class="filter-btn bg-gray-800 hover:bg-gray-700 px-4 py-1 rounded-full text-sm font-medium">Comedy</button>
-        <button class="filter-btn bg-gray-800 hover:bg-gray-700 px-4 py-1 rounded-full text-sm font-medium">Family</button>
-        <button class="filter-btn bg-gray-800 hover:bg-gray-700 px-4 py-1 rounded-full text-sm font-medium">Sci-Fi</button>
-      </div>
-      
-      <div class="flex items-center space-x-2">
-        <span class="text-gray-400 text-sm">Sort by:</span>
-        <select class="bg-gray-900 border border-gray-700 text-white text-sm rounded-full px-3 py-1 focus:outline-none focus:ring-1 focus:ring-yellow-500">
-          <option>Release Date</option>
-          <option>Episode Order</option>
-          <option>Popularity</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- Episodes Grid -->
-    <section>
-      <h3 class="text-xl font-semibold mb-6 flex items-center">
-        <i class="fas fa-list-ul text-yellow-500 mr-2"></i>
-        Episodes
-      </h3>
-      
-      <div id="movies" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-        <!-- Movie cards will be inserted here by JavaScript -->
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="bg-gray-900 border-t border-gray-800 mt-12 py-8">
-    <div class="container mx-auto px-4">
-      <div class="flex flex-col md:flex-row justify-between items-center">
-        <div class="mb-4 md:mb-0">
-          <div class="flex items-center space-x-2">
-            <div class="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center">
-              <i class="fas fa-shield-alt text-black text-sm"></i>
-            </div>
-            <span class="text-xl font-bold gradient-text">I Am Groot</span>
-          </div>
-          <p class="text-gray-400 text-sm mt-2">© 2023 Marvel Studios Productions. All rights reserved.</p>
-        </div>
-        
-        <div class="flex space-x-6">
-          <a href="#" class="text-gray-400 hover:text-yellow-500 transition"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="text-gray-400 hover:text-yellow-500 transition"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="text-gray-400 hover:text-yellow-500 transition"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="text-gray-400 hover:text-yellow-500 transition"><i class="fab fa-youtube"></i></a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Playback Modal (hidden by default) -->
-  <div id="playback-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black bg-opacity-90">
-    <div class="relative w-full max-w-4xl bg-gray-900 rounded-xl overflow-hidden">
-      <button id="close-modal" class="absolute top-4 right-4 z-50 text-white hover:text-yellow-500 text-2xl">
-        <i class="fas fa-times"></i>
+    <div class="flex items-center space-x-4">
+      <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-800 transition">
+        <i class="fas fa-moon text-yellow-500"></i>
       </button>
-      <div class="video-container">
-        <video id="modal-video" class="w-full" controls>
-          Your browser does not support the video tag.
-        </video>
-      </div>
-      <div class="p-6">
-        <h3 id="modal-title" class="text-2xl font-bold mb-2"></h3>
-        <div class="flex items-center text-gray-400 text-sm mb-4">
-          <span class="mr-4" id="season-episode"></span>
-          <span id="episode-duration"></span>
-        </div>
-        <p id="modal-description" class="text-gray-300 mb-6">
-          Loading description...
-        </p>
-        <div class="flex space-x-3">
-          <button class="bg-yellow-600 hover:bg-yellow-700 text-black font-semibold py-2 px-6 rounded-full transition flex items-center">
-            <i class="fas fa-play mr-2"></i> Play
-          </button>
-          <button class="bg-gray-800 hover:bg-gray-700 text-white font-semibold py-2 px-6 rounded-full transition flex items-center">
-            <i class="fas fa-plus mr-2"></i> Watchlist
-          </button>
-        </div>
-      </div>
+      <button id="search-btn" class="p-2 rounded-full hover:bg-gray-800 transition">
+        <i class="fas fa-search text-yellow-500"></i>
+      </button>
     </div>
   </div>
+
+  <div id="search-bar" class="hidden px-4 pb-4">
+    <div class="relative">
+      <input type="text" placeholder="Search episodes..." 
+             class="w-full bg-gray-900 border border-yellow-600/30 rounded-full py-2 px-4 pl-10 text-white">
+      <i class="fas fa-search absolute left-3 top-3 text-yellow-500"></i>
+    </div>
+  </div>
+</header>
+
+<main class="container mx-auto px-4 py-8">
+  <section class="mb-12 relative overflow-hidden rounded-xl h-64 md:h-96">
+    <video autoplay muted loop class="showcase-video">
+      <source src="https://imdb-video.media-imdb.com/vi210224921/1434659607842-pgv4ql-1691413662477.mp4?Expires=1761973033&Signature=jooeLqjQOOPVTH-~j58~8CEaNt4oDEH-DHLmN~HjUY9oQjVDlPilELMANBnguXzOAXyA9Rq3VRRSdHnjcIJOQjstyTE7XSo22tmQfsbWwZUPUbqfainOzsSrgBVRk4d3BYY7AXpfwX3KXAA3etBp7Lz9FWJyloIW0AG~t4wN8aoito1UEDVH8I-fD9sSm9e9TEITIaKEEcpNmr-61RbmWt6dU7N9Rz0zNmiKQJuOroEJGDtjcedxMwUjUhu2UGGsuLZMys5jBGr1nxso4MRPZu1Mbbhadtyna7wL77dQRNv9v8iEhWRF7jupU8ppu1Vygo5~zzXd-LmDtNp5tvzo9w__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA" type="video/mp4">
+    </video>
+    <div class="showcase-overlay"></div>
+    <div class="showcase-content h-full flex flex-col justify-end p-6 md:p-8">
+      <p class="text-gray-300 mb-4 max-w-lg">The complete adventures of Baby Groot. Watch as the adorable Flora Colossus gets into all sorts of mischief across the galaxy.</p>
+    </div>
+  </section>
+
+  <div class="flex overflow-x-auto mb-6 pb-2">
+    <div class="flex space-x-2">
+      <button class="season-btn active bg-yellow-600 text-black px-4 py-2 rounded-full" data-season="all">All Episodes</button>
+      <button class="season-btn bg-gray-800 px-4 py-2 rounded-full" data-season="1">Season 1</button>
+      <button class="season-btn bg-gray-800 px-4 py-2 rounded-full" data-season="2">Season 2</button>
+    </div>
+  </div>
+
+  <div class="flex flex-wrap justify-between mb-8 gap-4">
+    <div class="flex space-x-2 overflow-x-auto pb-2">
+      <button class="filter-btn active bg-yellow-600 text-black px-4 py-1 rounded-full">All</button>
+      <button class="filter-btn bg-gray-800 px-4 py-1 rounded-full">Adventure</button>
+      <button class="filter-btn bg-gray-800 px-4 py-1 rounded-full">Comedy</button>
+      <button class="filter-btn bg-gray-800 px-4 py-1 rounded-full">Family</button>
+      <button class="filter-btn bg-gray-800 px-4 py-1 rounded-full">Sci-Fi</button>
+    </div>
+  </div>
+
+  <section>
+    <h3 class="text-xl font-semibold mb-6"><i class="fas fa-list-ul text-yellow-500 mr-2"></i>Episodes</h3>
+    <div id="movies" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6"></div>
+  </section>
+</main>
+
+<footer class="bg-gray-900 border-t border-gray-800 mt-12 py-8 text-center text-gray-400">
+  © 2023 Marvel Studios Productions
+</footer>
+
+<!-- Playback Modal -->
+<div id="playback-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black bg-opacity-90">
+  <div class="relative w-full max-w-4xl bg-gray-900 rounded-xl overflow-hidden">
+    <button id="close-modal" class="absolute top-4 right-4 text-white text-2xl">&times;</button>
+    <div class="video-container">
+      <video id="modal-video" class="w-full" controls></video>
+    </div>
+    <div class="p-6">
+      <h3 id="modal-title" class="text-2xl font-bold mb-2"></h3>
+      <div id="season-episode" class="text-gray-400 text-sm mb-2"></div>
+      <div id="episode-duration" class="text-gray-400 text-sm mb-4"></div>
+      <p id="modal-description" class="text-gray-300"></p>
+    </div>
+  </div>
+</div>
+
 <script>
-    // Movie data
-    const movies = [
+// ========= EPISODE DATA =========
+const movies = [
       // Season 1
       { 
         title: "Groot's First Steps", 
@@ -375,7 +259,7 @@
       { 
         title: "Groot's Sweet Treat", 
         video: "https://hk1.shegu.net/vip/p1/tv_mp4_h264/1/9/18359/2/tv.18359.S2E4.720p.H264.20230906095804.mp4?KEY1=1SiVBFzSXgsMFw30KBmu7A&KEY2=1761900955&KEY3=1101678&KEY4=world&KEY7=febbox_video_quality_list_v3&KEY8=1101678", 
-        image: "https://image.tmdb.org/t/p/w300/4PSxBL0Muya07GIteMxJhA4A2B.jpg",
+        image: "https://image.tmdb.org/t/p/w300/4PSxBL0Muya07GIteMxJhA4A2iB.jpg",
         description: "Groot frantically scours the ship for coins as an intergalactic ice cream truck approaches.",
         duration: "6 min",
         season: 2,
@@ -394,220 +278,91 @@
       }
     ];
 
-    // DOM elements
-    const container = document.getElementById('movies');
-    const searchBtn = document.getElementById('search-btn');
-    const searchBar = document.getElementById('search-bar');
-    const themeToggle = document.getElementById('theme-toggle');
-    const playbackModal = document.getElementById('playback-modal');
-    const closeModal = document.getElementById('close-modal');
-    const modalVideo = document.getElementById('modal-video');
-    const modalTitle = document.getElementById('modal-title');
-    const modalDescription = document.getElementById('modal-description');
-    const seasonEpisode = document.getElementById('season-episode');
-    const episodeDuration = document.getElementById('episode-duration');
-    const seasonBtns = document.querySelectorAll('.season-btn');
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const searchInput = document.getElementById('search-input');
 
-    // Current filter state
-    let currentSeason = 'all';
-    let currentFilter = 'All';
+/* ✅ Add Spy-Kids MP4 detector */
+function isMP4(url) {
+  return /\.mp4($|\?)/i.test(url);
+}
 
-    // Initialize the page
-    function initPage() {
+/* DOM elements */
+const container = document.getElementById('movies');
+const playbackModal = document.getElementById('playback-modal');
+const modalVideo = document.getElementById('modal-video');
+const modalTitle = document.getElementById('modal-title');
+const modalDescription = document.getElementById('modal-description');
+const seasonEpisode = document.getElementById('season-episode');
+const episodeDuration = document.getElementById('episode-duration');
+const closeModal = document.getElementById('close-modal');
+
+let currentSeason = 'all';
+let currentFilter = 'All';
+
+function initPage() {
+  renderMovies();
+  document.querySelectorAll('.season-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelector('.season-btn.active').classList.remove('active', 'bg-yellow-600', 'text-black');
+      this.classList.add('active', 'bg-yellow-600', 'text-black');
+      currentSeason = this.dataset.season;
       renderMovies();
-      
-      // Season buttons
-      seasonBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-          document.querySelector('.season-btn.active').classList.remove('active', 'bg-yellow-600', 'text-black');
-          this.classList.add('active', 'bg-yellow-600', 'text-black');
-          currentSeason = this.dataset.season;
-          renderMovies();
-        });
-      });
+    });
+  });
 
-      // Filter buttons
-      filterBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-          document.querySelector('.filter-btn.active').classList.remove('active', 'bg-yellow-600', 'text-black');
-          this.classList.add('active', 'bg-yellow-600', 'text-black');
-          currentFilter = this.textContent;
-          renderMovies();
-        });
-      });
-    }
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelector('.filter-btn.active').classList.remove('active', 'bg-yellow-600', 'text-black');
+      this.classList.add('active', 'bg-yellow-600', 'text-black');
+      currentFilter = this.textContent;
+      renderMovies();
+    });
+  });
+}
 
-    // Render movies based on current filters
-    function renderMovies() {
-      container.innerHTML = '';
-      
-      let filteredMovies = movies;
-      
-      // Apply season filter
-      if (currentSeason !== 'all') {
-        filteredMovies = filteredMovies.filter(movie => movie.season == currentSeason);
+function renderMovies() {
+  container.innerHTML = '';
+  let filtered = movies;
+  if (currentSeason !== 'all') filtered = filtered.filter(m => m.season == currentSeason);
+  if (currentFilter !== 'All') filtered = filtered.filter(m => m.tags.includes(currentFilter));
+
+  filtered.forEach((movie, i) => {
+    const card = document.createElement('div');
+    card.className = `movie-card fade-in delay-${i%5} glow-effect`;
+    card.innerHTML = `
+      <div class="relative group cursor-pointer overflow-hidden rounded-xl">
+        <img src="${movie.image}" class="w-full h-48 object-cover rounded-xl transition group-hover:scale-105">
+        <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 flex items-center justify-center text-yellow-500 text-3xl"><i class="fas fa-play"></i></div>
+      </div>
+      <div class="mt-3 text-white font-medium">${movie.title}</div>
+      <div class="text-gray-400 text-sm">S${movie.season} • E${movie.episode} • ${movie.duration}</div>
+    `;
+
+    /* ✅ Spy-Kids logic applied */
+    card.addEventListener('click', () => {
+      if (isMP4(movie.video)) {
+        openModal(movie);
+      } else {
+        window.location.href =
+          `player.html?title=${encodeURIComponent(movie.title)}&video=${encodeURIComponent(movie.video)}`;
       }
-      
-      // Apply tag filter
-      if (currentFilter !== 'All') {
-        filteredMovies = filteredMovies.filter(movie => movie.tags.includes(currentFilter));
-      }
-      
-      // Create movie cards
-      filteredMovies.forEach((movie, index) => {
-        const card = document.createElement('div');
-        card.className = `movie-card fade-in delay-${index % 5} glow-effect`;
-        card.innerHTML = `
-          <div class="relative group overflow-hidden rounded-xl cursor-pointer">
-            <img src="${movie.image}" alt="${movie.title}" 
-                 class="w-full h-48 sm:h-56 md:h-64 object-cover rounded-xl transition duration-500 group-hover:scale-105">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-              <div>
-                <h3 class="text-white font-semibold text-lg">${movie.title}</h3>
-                <p class="text-gray-300 text-sm">${movie.duration}</p>
-              </div>
-            </div>
-            <div class="absolute top-3 right-3 bg-black bg-opacity-70 text-yellow-500 rounded-full w-10 h-10 flex items-center justify-center">
-              <i class="fas fa-play"></i>
-            </div>
-          </div>
-          <div class="mt-3">
-            <h3 class="text-white font-medium">${movie.title}</h3>
-            <div class="flex items-center text-gray-400 text-sm mt-1">
-              <span>S${movie.season} • E${movie.episode}</span>
-              <span class="mx-2">•</span>
-              <span>${movie.duration}</span>
-            </div>
-            <div class="flex flex-wrap gap-1 mt-2">
-              ${movie.tags.map(tag => `<span class="bg-gray-800 text-gray-300 text-xs px-2 py-0.5 rounded-full">${tag}</span>`).join('')}
-            </div>
-          </div>
-        `;
-        
-        card.addEventListener('click', () => {
-          openModal(movie);
-        });
-        
-        container.appendChild(card);
-      });
-    }
-
-    // Open modal with movie details
-    function openModal(movie) {
-      modalTitle.textContent = movie.title;
-      modalDescription.textContent = movie.description;
-      seasonEpisode.textContent = `S${movie.season} • E${movie.episode}`;
-      episodeDuration.textContent = movie.duration;
-      modalVideo.src = movie.video;
-      
-      playbackModal.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
-    }
-
-    // Close modal
-    function closeModalHandler() {
-      playbackModal.classList.add('hidden');
-      modalVideo.pause();
-      document.body.style.overflow = '';
-    }
-
-    // --- NEW: Robust theme + search toggle logic (DOMContentLoaded safe) ---
-    document.addEventListener('DOMContentLoaded', () => {
-      // Helper to sync icon and aria state
-      function syncThemeButton() {
-        if (!themeToggle) return;
-        const icon = themeToggle.querySelector('i');
-        const isDark = document.body.classList.contains('bg-black') || window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        themeToggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
-        if (icon) {
-          icon.classList.remove('fa-moon', 'fa-sun');
-          icon.classList.add(isDark ? 'fa-moon' : 'fa-moon'); // keep moon icon by default
-          // If you want sun icon on light, uncomment next two lines and adjust:
-          // icon.classList.toggle('fa-sun', !isDark);
-          // icon.classList.toggle('fa-moon', isDark);
-          icon.classList.add('text-yellow-500');
-        }
-      }
-
-      // Initialize theme button state
-      syncThemeButton();
-
-      // Theme toggle click
-      if (themeToggle) {
-        themeToggle.addEventListener('click', (e) => {
-          e.preventDefault();
-          // Toggle presence of dark background class
-          const isDark = document.body.classList.contains('bg-black');
-          if (isDark) {
-            // switch to light
-            document.body.classList.remove('bg-black', 'text-gray-100');
-            document.body.classList.add('bg-gray-100', 'text-gray-900');
-            // swap icon to sun
-            const icon = themeToggle.querySelector('i');
-            if (icon) { icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
-            themeToggle.setAttribute('aria-pressed', 'false');
-          } else {
-            // switch to dark
-            document.body.classList.remove('bg-gray-100', 'text-gray-900');
-            document.body.classList.add('bg-black', 'text-gray-100');
-            const icon = themeToggle.querySelector('i');
-            if (icon) { icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); }
-            themeToggle.setAttribute('aria-pressed', 'true');
-          }
-        });
-      }
-
-      // Search toggle click
-      if (searchBtn && searchBar) {
-        searchBtn.addEventListener('click', (e) => {
-          e.preventDefault();
-          const wasHidden = searchBar.classList.contains('hidden');
-          if (wasHidden) {
-            searchBar.classList.remove('hidden');
-            searchBtn.setAttribute('aria-pressed', 'true');
-            if (searchInput) setTimeout(() => searchInput.focus(), 50);
-          } else {
-            searchBar.classList.add('hidden');
-            searchBtn.setAttribute('aria-pressed', 'false');
-          }
-        });
-      }
-
-      // Close modal when clicking outside or pressing Escape
-      if (closeModal) closeModal.addEventListener('click', closeModalHandler);
-      if (playbackModal) {
-        playbackModal.addEventListener('click', (e) => {
-          if (e.target === playbackModal) closeModalHandler();
-        });
-      }
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          if (playbackModal && !playbackModal.classList.contains('hidden')) closeModalHandler();
-          if (searchBar && !searchBar.classList.contains('hidden')) {
-            searchBar.classList.add('hidden');
-            if (searchBtn) searchBtn.setAttribute('aria-pressed', 'false');
-          }
-        }
-      });
     });
 
-    // Event listeners for filter/search rendering etc.
-    searchBtn.addEventListener('click', () => {
-      // handled by DOMContentLoaded handler (defensive), keep here to avoid missing event if DOMContentLoaded already fired
-    });
+    container.appendChild(card);
+  });
+}
 
-    themeToggle.addEventListener('click', () => {
-      // handled by DOMContentLoaded handler, keep this no-op to avoid errors if referenced earlier
-    });
+function openModal(m) {
+  modalTitle.textContent = m.title;
+  modalDescription.textContent = m.description;
+  seasonEpisode.textContent = `S${m.season} • E${m.episode}`;
+  episodeDuration.textContent = m.duration;
+  modalVideo.src = m.video;
+  playbackModal.classList.remove('hidden');
+}
 
-    playbackModal.addEventListener('click', function(e) {
-      if (e.target === this) closeModalHandler();
-    });
+closeModal.onclick = () => { playbackModal.classList.add('hidden'); modalVideo.pause(); };
 
-    // Initialize the page when loaded
-    window.addEventListener('DOMContentLoaded', initPage);
-  </script>
+window.addEventListener('DOMContentLoaded', initPage);
+</script>
+
 </body>
 </html>
