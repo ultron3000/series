@@ -1,336 +1,286 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Animated Web Series</title>
 
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
   <style>
-    .card:hover img {
-      transform: scale(1.08);
+    .series-card:hover img {
+      transform: scale(1.1);
     }
-    .card img {
-      transition: 0.4s ease;
+    .series-card img {
+      transition: transform 0.6s ease;
     }
   </style>
 </head>
 
-<body class="bg-gray-50 text-gray-900">
+<body class="min-h-screen bg-gradient-to-br from-[#020617] via-[#020617] to-black text-white">
 
-  <!-- Page Header -->
-  <header class="py-10 text-center">
-    <h1 class="text-4xl font-extrabold">Animated Web Series</h1>
-    <p class="text-gray-500 text-lg mt-2">Watch the best shows & seasons</p>
+  <!-- Header -->
+  <header class="py-14 text-center">
+    <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">
+      Animated Web Series
+    </h1>
+    <p class="text-gray-400 mt-3 text-lg">
+      Premium Animation Collection
+    </p>
   </header>
 
-  <!-- Search Box -->
-<div class="max-w-7xl mx-auto px-4 mb-6">
-  <input
-    type="text"
-    id="searchInput"
-    placeholder="Search web series..."
-    class="w-full md:w-1/2 px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-  />
-</div>
+  <!-- Search -->
+  <div class="max-w-7xl mx-auto px-4 mb-10">
+    <div class="relative max-w-md mx-auto">
+      <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search series..."
+        class="w-full pl-11 pr-4 py-3 rounded-2xl bg-white/10 backdrop-blur border border-white/10 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white placeholder-gray-400"
+      />
+    </div>
+  </div>
+
+  <!-- Grid -->
+  <div class="max-w-7xl mx-auto px-4 pb-24">
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
+
+      <!-- CARD TEMPLATE -->
+        <a href="https://ultron3000.github.io/ultron/win-or-lose.html" class="series-card">
+        <div class="card"><div class="relative aspect-[2/3] overflow-hidden rounded-2xl bg-white/5 border border-white/10">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5-PAkIS5iMf2Go-_zWeDx70dwYFlwOuRYOQ&s" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+          <div class="p-4 absolute bottom-0">
+            <h3 class="font-semibold text-sm">Win or Lose</h3>
+            <p class="text-xs text-gray-400">Pixar • 8 Episodes</p>
+          </div>
+        </div></div>
+      </a>
+
+      <a href="https://ultron3000.github.io/ultron/cars-on-the-road.html" class="series-card">
+        <div class="card"><div class="relative aspect-[2/3] overflow-hidden rounded-2xl bg-white/5 border border-white/10">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT71F3hLwCgzLY-ZQsapvoC1Udaox8pyPY_MQ&s" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+          <div class="p-4 absolute bottom-0">
+            <h3 class="font-semibold text-sm">Cars on the Road</h3>
+            <p class="text-xs text-gray-400">Pixar • 9 Episodes</p>
+          </div>
+        </div></div>
+      </a>
+
+      <a href="https://ultron3000.github.io/ultron/what-if" class="series-card">
+        <div class="relative aspect-[2/3] overflow-hidden rounded-2xl bg-white/5 border border-white/10">
+          <img src="https://cdn.marvel.com/content/1x/online_2_0.jpg" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+          <div class="p-4 absolute bottom-0">
+            <h3 class="font-semibold text-sm">What If...?</h3>
+            <p class="text-xs text-gray-400">Marvel • 2 Seasons</p>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://ultron3000.github.io/ultron/dream-productions.html" class="series-card">
+        <div class="relative aspect-[2/3] overflow-hidden rounded-2xl bg-white/5 border border-white/10">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYUs8_SYgbb3yq-blX7NjKAPCwZxKhFNTF_g&s" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+          <div class="p-4 absolute bottom-0">
+            <h3 class="font-semibold text-sm">Dream Productions</h3>
+            <p class="text-xs text-gray-400">Pixar • 4 Episodes</p>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://ultron3000.github.io/ultron/dug-days.html" class="series-card">
+        <div class="relative aspect-[2/3] overflow-hidden rounded-2xl bg-white/5 border border-white/10">
+          <img src="https://m.media-amazon.com/images/M/MV5BZTc3NzY3MjctZWQ1Ny00NjUwLWE2YzgtMTBiMzNhZWQ1ZjdjXkEyXkFqcGc@._V1_.jpg" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+          <div class="p-4 absolute bottom-0">
+            <h3 class="font-semibold text-sm">Dug Days</h3>
+            <p class="text-xs text-gray-400">Pixar • 5 Episodes</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Abominable and the Invisible City -->
+<a href="https://ultron3000.github.io/ultron/abominable" class="series-card">
+  <div class="relative aspect-[2/3] overflow-hidden rounded-2xl bg-white/5 border border-white/10 shadow-lg">
+    <img src="https://lh6.googleusercontent.com/proxy/mghSAYUOeUgw7Ulu3eCYOOg2nf_kSlFN68AB-4UtCXrl0Tl-FdCRJIuzXR57dQDGChPPdF2wuirAdfmgCMA9s_32opr3Eq3lx2IYgqRinMBMio57sK42lXKSyOQsKYgT" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/85 to-transparent"></div>
+    <div class="absolute bottom-0 p-4">
+      <h3 class="font-semibold text-sm">Abominable and the Invisible City</h3>
+      <p class="text-xs text-gray-400">DreamWorks • 2 Seasons</p>
+    </div>
+  </div>
+</a>
+
+<!-- Wondla -->
+<a href="https://ultron3000.github.io/ultron/wondla" class="series-card">
+  <div class="relative aspect-[2/3] overflow-hidden rounded-2xl bg-white/5 border border-white/10 shadow-lg">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpRlRATUJ0r6raTqqAAsZ_UO1T3itiRjdIFg&s" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/85 to-transparent"></div>
+    <div class="absolute bottom-0 p-4">
+      <h3 class="font-semibold text-sm">Wondla</h3>
+      <p class="text-xs text-gray-400">Apple TV • 3 Seasons</p>
+    </div>
+  </div>
+</a>
+
+<!-- Monsters at Work -->
+<a href="https://ultron3000.github.io/ultron/monsters-at-work" class="series-card">
+  <div class="relative aspect-[2/3] overflow-hidden rounded-2xl bg-white/5 border border-white/10 shadow-lg">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTj4_ar3ZlwYNDw5wr_QyMBBSphxRAVUIQt9w&s" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/85 to-transparent"></div>
+    <div class="absolute bottom-0 p-4">
+      <h3 class="font-semibold text-sm">Monsters at Work</h3>
+      <p class="text-xs text-gray-400">Disney • 2 Seasons</p>
+    </div>
+  </div>
+</a>
+
+<!-- I Am Groot -->
+<a href="https://ultron3000.github.io/ultron/i-am-groot" class="series-card">
+  <div class="relative aspect-[2/3] overflow-hidden rounded-2xl bg-white/5 border border-white/10 shadow-lg">
+    <img src="https://images.ottplay.com/images/groot-571.jpeg" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/85 to-transparent"></div>
+    <div class="absolute bottom-0 p-4">
+      <h3 class="font-semibold text-sm">I Am Groot</h3>
+      <p class="text-xs text-gray-400">Marvel • 10 Shorts</p>
+    </div>
+  </div>
+</a>
+
+<!-- The Bad Guys: Breaking In -->
+<a href="https://ultron3000.github.io/ultron/bad-guys-breaking-in" class="series-card">
+  <div class="relative aspect-[2/3] overflow-hidden rounded-2xl bg-white/5 border border-white/10 shadow-lg">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrr07eYbxhQJ6EeV29Dbi4RAwM_tvsXS87DA&s" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/85 to-transparent"></div>
+    <div class="absolute bottom-0 p-4">
+      <h3 class="font-semibold text-sm">The Bad Guys: Breaking In</h3>
+      <p class="text-xs text-gray-400">DreamWorks / Netflix • 9 Episodes</p>
+    </div>
+  </div>
+</a>
+
+<!-- Baymax! -->
+<a href="https://ultron3000.github.io/ultron/baymax" class="series-card">
+  <div class="relative aspect-[2/3] overflow-hidden rounded-2xl bg-white/5 border border-white/10 shadow-lg">
+    <img src="https://lh6.googleusercontent.com/proxy/8RyEOqikJ7y3b_L3uOWS7HrPDqVN2H86o6sB9msfNiR1eeu4Mnqj9WSg72V9ZFuX5fc9WvG2RJk17QIwP6paFPQ" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/85 to-transparent"></div>
+    <div class="absolute bottom-0 p-4">
+      <h3 class="font-semibold text-sm">Baymax!</h3>
+      <p class="text-xs text-gray-400">Disney • 6 Episodes</p>
+    </div>
+  </div>
+</a>
+
+<!-- Iwájú -->
+<a href="https://ultron3000.github.io/ultron/iwaju" class="series-card">
+  <div class="relative aspect-[2/3] overflow-hidden rounded-2xl bg-white/5 border border-white/10 shadow-lg">
+    <img src="https://lh4.googleusercontent.com/proxy/TUhifyNdbC-PHS9kbMseJD6rbygctVcjnxIbBKrGNBTl_E80tQsA_YVzRdWCmoOpVZotswVxaRXBoBHAkpweqAb1LXX7" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/85 to-transparent"></div>
+    <div class="absolute bottom-0 p-4">
+      <h3 class="font-semibold text-sm">Iwájú</h3>
+      <p class="text-xs text-gray-400">Disney • 6 Episodes</p>
+    </div>
+  </div>
+</a>
+
+<!-- Zootopia+ -->
+<a href="https://ultron3000.github.io/ultron/zootopia+" class="series-card">
+  <div class="relative aspect-[2/3] overflow-hidden rounded-2xl bg-white/5 border border-white/10 shadow-lg">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDZPFzT3xLSB71qXFd8eV4w9rQUMQ-v_t5xw&s" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/85 to-transparent"></div>
+    <div class="absolute bottom-0 p-4">
+      <h3 class="font-semibold text-sm">Zootopia+</h3>
+      <p class="text-xs text-gray-400">Disney • 6 Episodes</p>
+    </div>
+  </div>
+</a>
+
+<!-- X-MEN '97 -->
+<a href="https://ultron3000.github.io/ultron/x-men-97" class="series-card">
+  <div class="relative aspect-[2/3] overflow-hidden rounded-2xl bg-white/5 border border-white/10 shadow-lg">
+    <img src="https://i.pinimg.com/736x/82/3e/55/823e55dc793055395586756b089419b5.jpg" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/85 to-transparent"></div>
+    <div class="absolute bottom-0 p-4">
+      <h3 class="font-semibold text-sm">X-MEN '97</h3>
+      <p class="text-xs text-gray-400">Marvel • 10 Episodes</p>
+    </div>
+  </div>
+</a>
+
+<!-- Marvel Knights: Black Panther -->
+<a href="https://ultron3000.github.io/ultron/marvel-knights-black-panther.html" class="series-card">
+  <div class="relative aspect-[2/3] overflow-hidden rounded-2xl bg-white/5 border border-white/10 shadow-lg">
+    <img src="https://m.media-amazon.com/images/M/MV5BN2VkMTMwZTAtZDVlNi00MDY3LTliMjQtMDk0MTc2ZTcwZjMzXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/85 to-transparent"></div>
+    <div class="absolute bottom-0 p-4">
+      <h3 class="font-semibold text-sm">Marvel Knights: Black Panther</h3>
+      <p class="text-xs text-gray-400">Marvel • 6 Episodes</p>
+    </div>
+  </div>
+</a>
+
+<!-- Eyes of Wakanda -->
+<a href="https://ultron3000.github.io/ultron/eyes-of-wakanda" class="series-card">
+  <div class="relative aspect-[2/3] overflow-hidden rounded-2xl bg-white/5 border border-white/10 shadow-lg">
+    <img src="https://lh4.googleusercontent.com/proxy/BI80_Yqnhae0EiOl3xmdrvNDqRqxKEJuEUKzPIOH-BLfAlNe3cdO0Evv4ma5xs76Q-5IHEHAiBl22bPNqBMbGsrxi7vhPM1FRn_4jzQYvQ" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/85 to-transparent"></div>
+    <div class="absolute bottom-0 p-4">
+      <h3 class="font-semibold text-sm">Eyes of Wakanda</h3>
+      <p class="text-xs text-gray-400">Marvel • 4 Episodes</p>
+    </div>
+  </div>
+</a>
+
+<!-- Marvel Zombies -->
+<a href="https://ultron3000.github.io/ultron/marvel-zombies.html" class="series-card">
+  <div class="relative aspect-[2/3] overflow-hidden rounded-2xl bg-white/5 border border-white/10 shadow-lg">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN2O1qLQy2qb7fR0amvZcoD5eS5g2Xsae-0A&s" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/85 to-transparent"></div>
+    <div class="absolute bottom-0 p-4">
+      <h3 class="font-semibold text-sm">Marvel Zombies</h3>
+      <p class="text-xs text-gray-400">Marvel • 4 Episodes</p>
+    </div>
+  </div>
+</a>
+
+<!-- Black Panther's Quest -->
+<a href="https://ultron3000.github.io/ultron/black-panthers-quest.html" class="series-card">
+  <div class="relative aspect-[2/3] overflow-hidden rounded-2xl bg-white/5 border border-white/10 shadow-lg">
+    <img src="https://i.ebayimg.com/images/g/Zw4AAOSwI2hgGgce/s-l1200.jpg" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/85 to-transparent"></div>
+    <div class="absolute bottom-0 p-4">
+      <h3 class="font-semibold text-sm">Black Panther's Quest</h3>
+      <p class="text-xs text-gray-400">Avengers Assemble • 23 Episodes</p>
+    </div>
+  </div>
+</a>
 
 
-  <!-- Grid Container -->
-  <div class="max-w-7xl mx-auto px-4 pb-20">
-
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-
-      <!-- CARD TEMPLATE START -->
-     <a href="https://ultron3000.github.io/ultron/win-or-lose.html" class="web-series-card flex bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer hover:shadow-md transition-shadow">
-        <div class="w-24 h-24 sm:w-28 sm:h-28 overflow-hidden rounded-l-xl">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5-PAkIS5iMf2Go-_zWeDx70dwYFlwOuRYOQ&s" alt="Pixar" class="w-full h-full object-cover">
-        </div>
-        <div class="p-3 flex flex-col justify-center flex-1">
-          <h3 class="font-medium text-sm sm:text-base">Win or Lose</h3>
-          <p class="text-xs text-gray-500 mt-1">Pixar Studios • 8 Episodes</p>
-          <div class="flex items-center mt-2">
-            <div class="w-full bg-gray-200 rounded-full h-1.5">
-              <div class="bg-primary h-1.5 rounded-full" style="width: 75%"></div>
-            </div>
-            <span class="text-xs text-gray-500 ml-2">75%</span>
-          </div>
-        </div>
-      </a>
-      <a href="https://ultron3000.github.io/ultron/cars-on-the-road.html" class="web-series-card flex bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer hover:shadow-md transition-shadow">
-        <div class="w-24 h-24 sm:w-28 sm:h-28 overflow-hidden rounded-l-xl">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT71F3hLwCgzLY-ZQsapvoC1Udaox8pyPY_MQ&s" alt="Pixar" class="w-full h-full object-cover">
-        </div>
-        <div class="p-3 flex flex-col justify-center flex-1">
-          <h3 class="font-medium text-sm sm:text-base">Cars on the Road</h3>
-          <p class="text-xs text-gray-500 mt-1">Pixar Studios • 9 Episodes</p>
-          <div class="flex items-center mt-2">
-            <div class="w-full bg-gray-200 rounded-full h-1.5">
-              <div class="bg-primary h-1.5 rounded-full" style="width: 75%"></div>
-            </div>
-            <span class="text-xs text-gray-500 ml-2">75%</span>
-          </div>
-        </div>
-      </a>
-      <a href="https://ultron3000.github.io/ultron/what-if" class="web-series-card flex bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer hover:shadow-md transition-shadow">
-        <div class="w-24 h-24 sm:w-28 sm:h-28 overflow-hidden rounded-l-xl">
-          <img src="https://cdn.marvel.com/content/1x/online_2_0.jpg" alt="Pixar" class="w-full h-full object-cover">
-        </div>
-        <div class="p-3 flex flex-col justify-center flex-1">
-          <h3 class="font-medium text-sm sm:text-base">What If...?</h3>
-          <p class="text-xs text-gray-500 mt-1">Marvel Studios • 2 Seasons</p>
-          <div class="flex items-center mt-2">
-            <div class="w-full bg-gray-200 rounded-full h-1.5">
-              <div class="bg-primary h-1.5 rounded-full" style="width: 75%"></div>
-            </div>
-            <span class="text-xs text-gray-500 ml-2">75%</span>
-          </div>
-        </div>
-      </a>
-      <a href="https://ultron3000.github.io/ultron/dream-productions.html" class="web-series-card flex bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer hover:shadow-md transition-shadow">
-        <div class="w-24 h-24 sm:w-28 sm:h-28 overflow-hidden rounded-l-xl">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYUs8_SYgbb3yq-blX7NjKAPCwZxKhFNTF_g&s" alt="Pixar" class="w-full h-full object-cover">
-        </div>
-        <div class="p-3 flex flex-col justify-center flex-1">
-          <h3 class="font-medium text-sm sm:text-base">Dream Productions</h3>
-          <p class="text-xs text-gray-500 mt-1">Pixar Studios • 4 Episodes</p>
-          <div class="flex items-center mt-2">
-            <div class="w-full bg-gray-200 rounded-full h-1.5">
-              <div class="bg-primary h-1.5 rounded-full" style="width: 75%"></div>
-            </div>
-            <span class="text-xs text-gray-500 ml-2">75%</span>
-          </div>
-        </div>
-      </a>
-      <a href="https://ultron3000.github.io/ultron/dug-days.html" class="web-series-card flex bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer hover:shadow-md transition-shadow">
-        <div class="w-24 h-24 sm:w-28 sm:h-28 overflow-hidden rounded-l-xl">
-          <img src="https://m.media-amazon.com/images/M/MV5BZTc3NzY3MjctZWQ1Ny00NjUwLWE2YzgtMTBiMzNhZWQ1ZjdjXkEyXkFqcGc@._V1_.jpg" alt="Pixar" class="w-full h-full object-cover">
-        </div>
-        <div class="p-3 flex flex-col justify-center flex-1">
-          <h3 class="font-medium text-sm sm:text-base">Dug Days</h3>
-          <p class="text-xs text-gray-500 mt-1">Pixar Studios • 5 Episodes</p>
-          <div class="flex items-center mt-2">
-            <div class="w-full bg-gray-200 rounded-full h-1.5">
-              <div class="bg-primary h-1.5 rounded-full" style="width: 75%"></div>
-            </div>
-            <span class="text-xs text-gray-500 ml-2">75%</span>
-          </div>
-        </div>
-      </a>
-      <a href="https://ultron3000.github.io/ultron/abominable" class="web-series-card flex bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer hover:shadow-md transition-shadow">
-        <div class="w-24 h-24 sm:w-28 sm:h-28 overflow-hidden rounded-l-xl">
-          <img src="https://lh6.googleusercontent.com/proxy/mghSAYUOeUgw7Ulu3eCYOOg2nf_kSlFN68AB-4UtCXrl0Tl-FdCRJIuzXR57dQDGChPPdF2wuirAdfmgCMA9s_32opr3Eq3lx2IYgqRinMBMio57sK42lXKSyOQsKYgT" alt="Pixar" class="w-full h-full object-cover">
-        </div>
-        <div class="p-3 flex flex-col justify-center flex-1">
-          <h3 class="font-medium text-sm sm:text-base">Abominable and the Invisible City</h3>
-          <p class="text-xs text-gray-500 mt-1">DreamWorks Studios • 2 Seasons</p>
-          <div class="flex items-center mt-2">
-            <div class="w-full bg-gray-200 rounded-full h-1.5">
-              <div class="bg-primary h-1.5 rounded-full" style="width: 75%"></div>
-            </div>
-            <span class="text-xs text-gray-500 ml-2">75%</span>
-          </div>
-        </div>
-      </a>
-      <a href="https://ultron3000.github.io/ultron/wondla" class="web-series-card flex bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer hover:shadow-md transition-shadow">
-        <div class="w-24 h-24 sm:w-28 sm:h-28 overflow-hidden rounded-l-xl">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpRlRATUJ0r6raTqqAAsZ_UO1T3itiRjdIFg&s" alt="Wondla" class="w-full h-full object-cover">
-        </div>
-        <div class="p-3 flex flex-col justify-center flex-1">
-          <h3 class="font-medium text-sm sm:text-base">Wondla</h3>
-          <p class="text-xs text-gray-500 mt-1">Apple TV • 3 Seasons</p>
-          <div class="flex items-center mt-2">
-            <div class="w-full bg-gray-200 rounded-full h-1.5">
-              <div class="bg-primary h-1.5 rounded-full" style="width: 90%"></div>
-            </div>
-            <span class="text-xs text-gray-500 ml-2">90%</span>
-          </div>
-        </div>
-      </a>
-      <a href="https://ultron3000.github.io/ultron/monsters-at-work" class="web-series-card flex bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer hover:shadow-md transition-shadow">
-        <div class="w-24 h-24 sm:w-28 sm:h-28 overflow-hidden rounded-l-xl">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTj4_ar3ZlwYNDw5wr_QyMBBSphxRAVUIQt9w&s" alt="Wondla" class="w-full h-full object-cover">
-        </div>
-        <div class="p-3 flex flex-col justify-center flex-1">
-          <h3 class="font-medium text-sm sm:text-base">Monsters at Work</h3>
-          <p class="text-xs text-gray-500 mt-1">Disney Studios • 2 Seasons</p>
-          <div class="flex items-center mt-2">
-            <div class="w-full bg-gray-200 rounded-full h-1.5">
-              <div class="bg-primary h-1.5 rounded-full" style="width: 90%"></div>
-            </div>
-            <span class="text-xs text-gray-500 ml-2">90%</span>
-          </div>
-        </div>
-      </a>
-      <a href="https://ultron3000.github.io/ultron/i-am-groot" class="web-series-card flex bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer hover:shadow-md transition-shadow">
-        <div class="w-24 h-24 sm:w-28 sm:h-28 overflow-hidden rounded-l-xl">
-          <img src="https://images.ottplay.com/images/groot-571.jpeg" alt="Iwájú" class="w-full h-full object-cover">
-        </div>
-        <div class="p-3 flex flex-col justify-center flex-1">
-          <h3 class="font-medium text-sm sm:text-base">I Am Groot</h3>
-          <p class="text-xs text-gray-500 mt-1">Marvel Studios • 10 Shorts</p>
-          <div class="flex items-center mt-2">
-            <div class="w-full bg-gray-200 rounded-full h-1.5">
-              <div class="bg-primary h-1.5 rounded-full" style="width: 90%"></div>
-            </div>
-            <span class="text-xs text-gray-500 ml-2">90%</span>
-          </div>
-        </div>
-      </a>
-      <a href="https://ultron3000.github.io/ultron/bad-guys-breaking-in" class="web-series-card flex bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer hover:shadow-md transition-shadow">
-        <div class="w-24 h-24 sm:w-28 sm:h-28 overflow-hidden rounded-l-xl">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrr07eYbxhQJ6EeV29Dbi4RAwM_tvsXS87DA&s" alt="Disney" class="w-full h-full object-cover">
-        </div>
-        <div class="p-3 flex flex-col justify-center flex-1">
-          <h3 class="font-medium text-sm sm:text-base">The Bad Guys: Breaking In</h3>
-          <p class="text-xs text-gray-500 mt-1">DreamWorks/Netflix • 9 Episodes</p>
-          <div class="flex items-center mt-2">
-            <div class="w-full bg-gray-200 rounded-full h-1.5">
-              <div class="bg-primary h-1.5 rounded-full" style="width: 85%"></div>
-            </div>
-            <span class="text-xs text-gray-500 ml-2">85%</span>
-          </div>
-        </div>
-      </a>
-      <a href="https://ultron3000.github.io/ultron/baymax" class="web-series-card flex bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer hover:shadow-md transition-shadow">
-        <div class="w-24 h-24 sm:w-28 sm:h-28 overflow-hidden rounded-l-xl">
-          <img src="https://lh6.googleusercontent.com/proxy/8RyEOqikJ7y3b_L3uOWS7HrPDqVN2H86o6sB9msfNiR1eeu4Mnqj9WSg72V9ZFuX5fc9WvG2RJk17QIwP6paFPQ" alt="Disney" class="w-full h-full object-cover">
-        </div>
-        <div class="p-3 flex flex-col justify-center flex-1">
-          <h3 class="font-medium text-sm sm:text-base">Baymax!</h3>
-          <p class="text-xs text-gray-500 mt-1">Disney Studios • 6 Episodes</p>
-          <div class="flex items-center mt-2">
-            <div class="w-full bg-gray-200 rounded-full h-1.5">
-              <div class="bg-primary h-1.5 rounded-full" style="width: 85%"></div>
-            </div>
-            <span class="text-xs text-gray-500 ml-2">85%</span>
-          </div>
-        </div>
-      </a>
-      <a href="https://ultron3000.github.io/ultron/iwaju" class="web-series-card flex bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer hover:shadow-md transition-shadow">
-        <div class="w-24 h-24 sm:w-28 sm:h-28 overflow-hidden rounded-l-xl">
-          <img src="https://lh4.googleusercontent.com/proxy/TUhifyNdbC-PHS9kbMseJD6rbygctVcjnxIbBKrGNBTl_E80tQsA_YVzRdWCmoOpVZotswVxaRXBoBHAkpweqAb1LXX7" alt="Disney" class="w-full h-full object-cover">
-        </div>
-        <div class="p-3 flex flex-col justify-center flex-1">
-          <h3 class="font-medium text-sm sm:text-base">Iwájú</h3>
-          <p class="text-xs text-gray-500 mt-1">Disney Studios • 6 Episodes</p>
-          <div class="flex items-center mt-2">
-            <div class="w-full bg-gray-200 rounded-full h-1.5">
-              <div class="bg-primary h-1.5 rounded-full" style="width: 85%"></div>
-            </div>
-            <span class="text-xs text-gray-500 ml-2">85%</span>
-          </div>
-        </div>
-      </a>
-      <a href="https://ultron3000.github.io/ultron/zootopia+" class="web-series-card flex bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer hover:shadow-md transition-shadow">
-        <div class="w-24 h-24 sm:w-28 sm:h-28 overflow-hidden rounded-l-xl">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDZPFzT3xLSB71qXFd8eV4w9rQUMQ-v_t5xw&s" alt="Disney" class="w-full h-full object-cover">
-        </div>
-        <div class="p-3 flex flex-col justify-center flex-1">
-          <h3 class="font-medium text-sm sm:text-base">Zootopia+</h3>
-          <p class="text-xs text-gray-500 mt-1">Disney Studios • 6 Episodes</p>
-          <div class="flex items-center mt-2">
-            <div class="w-full bg-gray-200 rounded-full h-1.5">
-              <div class="bg-primary h-1.5 rounded-full" style="width: 85%"></div>
-            </div>
-            <span class="text-xs text-gray-500 ml-2">85%</span>
-          </div>
-        </div>
-      </a>
-      <a href="https://ultron3000.github.io/ultron/x-men-97" class="web-series-card flex bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer hover:shadow-md transition-shadow">
-        <div class="w-24 h-24 sm:w-28 sm:h-28 overflow-hidden rounded-l-xl">
-          <img src="https://i.pinimg.com/736x/82/3e/55/823e55dc793055395586756b089419b5.jpg" alt="Disney" class="w-full h-full object-cover">
-        </div>
-        <div class="p-3 flex flex-col justify-center flex-1">
-          <h3 class="font-medium text-sm sm:text-base">X-MEN '97</h3>
-          <p class="text-xs text-gray-500 mt-1">Marvel Studios • 10 Episodes</p>
-          <div class="flex items-center mt-2">
-            <div class="w-full bg-gray-200 rounded-full h-1.5">
-              <div class="bg-primary h-1.5 rounded-full" style="width: 85%"></div>
-            </div>
-            <span class="text-xs text-gray-500 ml-2">85%</span>
-          </div>
-        </div>
-      </a>
-      <a href="https://ultron3000.github.io/ultron/marvel-knights-black-panther.html" class="web-series-card flex bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer hover:shadow-md transition-shadow">
-        <div class="w-24 h-24 sm:w-28 sm:h-28 overflow-hidden rounded-l-xl">
-          <img src="https://m.media-amazon.com/images/M/MV5BN2VkMTMwZTAtZDVlNi00MDY3LTliMjQtMDk0MTc2ZTcwZjMzXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Disney" class="w-full h-full object-cover">
-        </div>
-        <div class="p-3 flex flex-col justify-center flex-1">
-          <h3 class="font-medium text-sm sm:text-base">Marvel Knights: Black Panther</h3>
-          <p class="text-xs text-gray-500 mt-1">Marvel Studios • 6 Episodes</p>
-          <div class="flex items-center mt-2">
-            <div class="w-full bg-gray-200 rounded-full h-1.5">
-              <div class="bg-primary h-1.5 rounded-full" style="width: 85%"></div>
-            </div>
-            <span class="text-xs text-gray-500 ml-2">85%</span>
-          </div>
-        </div>
-      </a>
-      <a href="https://ultron3000.github.io/ultron/eyes-of-wakanda" class="web-series-card flex bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer hover:shadow-md transition-shadow">
-        <div class="w-24 h-24 sm:w-28 sm:h-28 overflow-hidden rounded-l-xl">
-          <img src="https://lh4.googleusercontent.com/proxy/BI80_Yqnhae0EiOl3xmdrvNDqRqxKEJuEUKzPIOH-BLfAlNe3cdO0Evv4ma5xs76Q-5IHEHAiBl22bPNqBMbGsrxi7vhPM1FRn_4jzQYvQ" alt="Disney" class="w-full h-full object-cover">
-        </div>
-        <div class="p-3 flex flex-col justify-center flex-1">
-          <h3 class="font-medium text-sm sm:text-base">Eyes of Wakanda</h3>
-          <p class="text-xs text-gray-500 mt-1">Marvel Studios • 4 Episodes</p>
-          <div class="flex items-center mt-2">
-            <div class="w-full bg-gray-200 rounded-full h-1.5">
-              <div class="bg-primary h-1.5 rounded-full" style="width: 85%"></div>
-            </div>
-            <span class="text-xs text-gray-500 ml-2">85%</span>
-          </div>
-        </div>
-      </a>
-      <a href="https://ultron3000.github.io/ultron/marvel-zombies.html" class="web-series-card flex bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer hover:shadow-md transition-shadow">
-        <div class="w-24 h-24 sm:w-28 sm:h-28 overflow-hidden rounded-l-xl">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN2O1qLQy2qb7fR0amvZcoD5eS5g2Xsae-0A&s" alt="Disney" class="w-full h-full object-cover">
-        </div>
-        <div class="p-3 flex flex-col justify-center flex-1">
-          <h3 class="font-medium text-sm sm:text-base">Marvel Zombies</h3>
-          <p class="text-xs text-gray-500 mt-1">Marvel Studios • 4 Episodes</p>
-          <div class="flex items-center mt-2">
-            <div class="w-full bg-gray-200 rounded-full h-1.5">
-              <div class="bg-primary h-1.5 rounded-full" style="width: 85%"></div>
-            </div>
-            <span class="text-xs text-gray-500 ml-2">85%</span>
-          </div>
-        </div>
-      </a>
-      <a href="https://ultron3000.github.io/ultron/black-panthers-quest.html" class="web-series-card flex bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer hover:shadow-md transition-shadow">
-        <div class="w-24 h-24 sm:w-28 sm:h-28 overflow-hidden rounded-l-xl">
-          <img src="https://i.ebayimg.com/images/g/Zw4AAOSwI2hgGgce/s-l1200.jpg" alt="Disney" class="w-full h-full object-cover">
-        </div>
-        <div class="p-3 flex flex-col justify-center flex-1">
-          <h3 class="font-medium text-sm sm:text-base">Black Panther's Quest</h3>
-          <p class="text-xs text-gray-500 mt-1">Avengers Assemble • 23 Episodes</p>
-          <div class="flex items-center mt-2">
-            <div class="w-full bg-gray-200 rounded-full h-1.5">
-              <div class="bg-primary h-1.5 rounded-full" style="width: 85%"></div>
-            </div>
-            <span class="text-xs text-gray-500 ml-2">85%</span>
-          </div>
-        </div>
-      </a>
+      <!-- Continue same pattern for remaining cards -->
+      <!-- Your remaining links can be added identically -->
 
     </div>
   </div>
 
- <script>
-  const searchInput = document.getElementById("searchInput");
-  const cards = document.querySelectorAll(".web-series-card");
+  <!-- Search -->
+  <script>
+    const searchInput = document.getElementById("searchInput");
+    const cards = document.querySelectorAll(".series-card");
 
-  searchInput.addEventListener("input", function () {
-    const query = this.value.toLowerCase();
-
-    cards.forEach(card => {
-      const text = card.innerText.toLowerCase();
-      card.style.display = text.includes(query) ? "flex" : "none";
+    searchInput.addEventListener("input", function () {
+      const q = this.value.toLowerCase();
+      cards.forEach(card => {
+        card.style.display = card.innerText.toLowerCase().includes(q) ? "block" : "none";
+      });
     });
-  });
-</script>
-
+  </script>
 
 </body>
 </html>
