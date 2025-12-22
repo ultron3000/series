@@ -1,275 +1,272 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hindi Web Series</title>
 
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
   <style>
-    .card:hover img {
+    .series-card:hover img {
       transform: scale(1.08);
     }
-    .card img {
-      transition: 0.4s ease;
+    .series-card img {
+      transition: transform 0.45s ease;
     }
   </style>
 </head>
 
-<body class="bg-gray-50 text-gray-900">
+<body class="min-h-screen bg-gradient-to-br from-[#0f172a] via-[#020617] to-black text-white">
 
-  <!-- Page Header -->
-  <header class="py-10 text-center">
-    <h1 class="text-4xl font-extrabold">Hindi Web Series</h1>
-    <p class="text-gray-500 text-lg mt-2">Watch the best series</p>
+  <!-- Header -->
+  <header class="py-14 text-center">
+    <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">
+      Hindi Web Series
+    </h1>
+    <p class="text-gray-400 mt-3 text-lg">
+      Watch the best Hindi  series & originals
+    </p>
   </header>
 
-  <!-- Search Box -->
-<div class="max-w-7xl mx-auto px-4 mb-6">
-  <input
-    type="text"
-    id="searchInput"
-    placeholder="Search web series..."
-    class="w-full md:w-1/2 px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-  />
-</div>
+  <!-- Search -->
+  <div class="max-w-7xl mx-auto px-4 mb-10">
+    <div class="relative max-w-md mx-auto">
+      <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search web series..."
+        class="w-full pl-11 pr-4 py-3 rounded-2xl bg-white/10 backdrop-blur border border-white/10 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white placeholder-gray-400"
+      />
+    </div>
+  </div>
+
+  <!-- Grid -->
+  <div class="max-w-7xl mx-auto px-4 pb-24">
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
+
+      <!-- CARD -->
+<!-- Rocket Boys -->
+<a href="https://ultron3000.github.io/ultron/rocket-boys" class="series-card rounded-2xl overflow-hidden bg-white/5 border border-white/10 hover:shadow-indigo-500/20 transition">
+  <div class="aspect-[2/3] overflow-hidden">
+    <img src="https://wallpapercat.com/w/full/0/0/0/5814393.jpg" class="w-full h-full object-cover">
+  </div>
+  <div class="p-4">
+    <h3 class="font-semibold text-sm">Rocket Boys</h3>
+    <p class="text-xs text-gray-400">Sony Liv • 2 Seasons</p>
+    <div class="mt-3 h-1.5 bg-white/10 rounded-full">
+      <div class="h-1.5 bg-gradient-to-r from-indigo-500 to-purple-500 w-[75%] rounded-full"></div>
+    </div>
+  </div>
+</a>
+
+<!-- Real Kashmir Football Club -->
+<a href="https://ultron3000.github.io/ultron/real-kashmir-football-club" class="series-card rounded-2xl overflow-hidden bg-white/5 border border-white/10 hover:shadow-indigo-500/20 transition">
+  <div class="aspect-[2/3] overflow-hidden">
+    <img src="https://images.slivcdn.com/videoasset_images/blitz_assets/1090496867/landscapeThumb/1765178394016_./RKFC_2_Landscape_Thumb.jpg?w=1000&q=low" class="w-full h-full object-cover">
+  </div>
+  <div class="p-4">
+    <h3 class="font-semibold text-sm">Real Kashmir Football Club</h3>
+    <p class="text-xs text-gray-400">Sony LIV • 1 Season</p>
+    <div class="mt-3 h-1.5 bg-white/10 rounded-full">
+      <div class="h-1.5 bg-gradient-to-r from-indigo-500 to-purple-500 w-[75%] rounded-full"></div>
+    </div>
+  </div>
+</a>
+
+<!-- Special Ops -->
+<a href="https://ultron3000.github.io/ultron/special-ops" class="series-card rounded-2xl overflow-hidden bg-white/5 border border-white/10 hover:shadow-indigo-500/20 transition">
+  <div class="aspect-[2/3] overflow-hidden">
+    <img src="https://www.bizasialive.com/wp-content/uploads/2020/02/specialops001.jpg" class="w-full h-full object-cover">
+  </div>
+  <div class="p-4">
+    <h3 class="font-semibold text-sm">Special Ops</h3>
+    <p class="text-xs text-gray-400">Hotstar Specials • 3 Seasons</p>
+    <div class="mt-3 h-1.5 bg-white/10 rounded-full">
+      <div class="h-1.5 bg-gradient-to-r from-indigo-500 to-purple-500 w-[75%] rounded-full"></div>
+    </div>
+  </div>
+</a>
+
+<!-- Shoorveer -->
+<a href="https://ultron3000.github.io/ultron/shoorveer" class="series-card rounded-2xl overflow-hidden bg-white/5 border border-white/10 hover:shadow-indigo-500/20 transition">
+  <div class="aspect-[2/3] overflow-hidden">
+    <img src="https://img10.hotstar.com/image/upload/f_auto/sources/r1/cms/prod/1817/1706697671817-i" class="w-full h-full object-cover">
+  </div>
+  <div class="p-4">
+    <h3 class="font-semibold text-sm">Shoorveer</h3>
+    <p class="text-xs text-gray-400">Season 1</p>
+    <div class="mt-3 h-1.5 bg-white/10 rounded-full">
+      <div class="h-1.5 bg-gradient-to-r from-indigo-500 to-purple-500 w-[75%] rounded-full"></div>
+    </div>
+  </div>
+</a>
+
+<!-- Inspector Avinash -->
+<a href="https://ultron3000.github.io/ultron/inspector-avinash" class="series-card rounded-2xl overflow-hidden bg-white/5 border border-white/10 hover:shadow-indigo-500/20 transition">
+  <div class="aspect-[2/3] overflow-hidden">
+    <img src="https://image.tmdb.org/t/p/original/cyX4lDfLOtejavCY5PbtRlk4C63.jpg" class="w-full h-full object-cover">
+  </div>
+  <div class="p-4">
+    <h3 class="font-semibold text-sm">Inspector Avinash</h3>
+    <p class="text-xs text-gray-400">Season 1</p>
+    <div class="mt-3 h-1.5 bg-white/10 rounded-full">
+      <div class="h-1.5 bg-gradient-to-r from-indigo-500 to-purple-500 w-[75%] rounded-full"></div>
+    </div>
+  </div>
+</a>
+
+<!-- Avrodh: The Siege Within -->
+<a href="https://ultron3000.github.io/hindiseries/avrodh" class="series-card rounded-2xl overflow-hidden bg-white/5 border border-white/10 hover:shadow-indigo-500/20 transition">
+  <div class="aspect-[2/3] overflow-hidden">
+    <img src="https://m.media-amazon.com/images/M/MV5BZjUyODVmNGItYjZkNy00ZmExLWEyYzQtZWZmOGE3ZTc0NjhhXkEyXkFqcGc@._V1_.jpg" class="w-full h-full object-cover">
+  </div>
+  <div class="p-4">
+    <h3 class="font-semibold text-sm">Avrodh: The Siege Within</h3>
+    <p class="text-xs text-gray-400">Sony Liv • 2 Seasons</p>
+    <div class="mt-3 h-1.5 bg-white/10 rounded-full">
+      <div class="h-1.5 bg-gradient-to-r from-indigo-500 to-purple-500 w-[75%] rounded-full"></div>
+    </div>
+  </div>
+</a>
+
+<!-- Kurukshetra -->
+<a href="https://ultron3000.github.io/ultron/kurukshetra" class="series-card rounded-2xl overflow-hidden bg-white/5 border border-white/10 hover:shadow-indigo-500/20 transition">
+  <div class="aspect-[2/3] overflow-hidden">
+    <img src="https://images.filmibeat.com/img/2025/10/kurukshetrareleasedated-1759299342.jpg" class="w-full h-full object-cover">
+  </div>
+  <div class="p-4">
+    <h3 class="font-semibold text-sm">Kurukshetra</h3>
+    <p class="text-xs text-gray-400">Season 1</p>
+    <div class="mt-3 h-1.5 bg-white/10 rounded-full">
+      <div class="h-1.5 bg-gradient-to-r from-indigo-500 to-purple-500 w-[75%] rounded-full"></div>
+    </div>
+  </div>
+</a>
+
+<!-- The Family Man -->
+<a href="https://ultron3000.github.io/ultron/the-family-man.html" class="series-card rounded-2xl overflow-hidden bg-white/5 border border-white/10 hover:shadow-indigo-500/20 transition">
+  <div class="aspect-[2/3] overflow-hidden">
+    <img src="https://images.ottplay.com/articles/2021q2/The_Family_Man_Seaso_OTTplay_critics_cover_image_1_118.jpeg" class="w-full h-full object-cover">
+  </div>
+  <div class="p-4">
+    <h3 class="font-semibold text-sm">The Family Man</h3>
+    <p class="text-xs text-gray-400">2 Seasons</p>
+    <div class="mt-3 h-1.5 bg-white/10 rounded-full">
+      <div class="h-1.5 bg-gradient-to-r from-indigo-500 to-purple-500 w-[75%] rounded-full"></div>
+    </div>
+  </div>
+</a>
+
+<!-- Panchayat -->
+<a href="https://ultron3000.github.io/ultron/panchayat" class="series-card rounded-2xl overflow-hidden bg-white/5 border border-white/10 hover:shadow-indigo-500/20 transition">
+  <div class="aspect-[2/3] overflow-hidden">
+    <img src="https://m.media-amazon.com/images/M/MV5BYjIxNDA2MjMtZWQ5ZS00ZjA5LTljMzYtYTBhODRkZDk0NGYyXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" class="w-full h-full object-cover">
+  </div>
+  <div class="p-4">
+    <h3 class="font-semibold text-sm">Panchayat</h3>
+    <p class="text-xs text-gray-400">4 Seasons</p>
+    <div class="mt-3 h-1.5 bg-white/10 rounded-full">
+      <div class="h-1.5 bg-gradient-to-r from-indigo-500 to-purple-500 w-[75%] rounded-full"></div>
+    </div>
+  </div>
+</a>
+
+<!-- Bhaukaal -->
+<a href="https://ultron3000.github.io/ultron/bhaukaal" class="series-card rounded-2xl overflow-hidden bg-white/5 border border-white/10 hover:shadow-indigo-500/20 transition">
+  <div class="aspect-[2/3] overflow-hidden">
+    <img src="https://qqcdnpictest.mxplay.com/pic/775ad3b682fde6a608559a60986b230d/en/16x9/1600x900/test_pic1726242963844.jpg" class="w-full h-full object-cover">
+  </div>
+  <div class="p-4">
+    <h3 class="font-semibold text-sm">Bhaukaal</h3>
+    <p class="text-xs text-gray-400">2 Seasons</p>
+    <div class="mt-3 h-1.5 bg-white/10 rounded-full">
+      <div class="h-1.5 bg-gradient-to-r from-indigo-500 to-purple-500 w-[75%] rounded-full"></div>
+    </div>
+  </div>
+</a>
+
+<!-- The Secret of the Shiledars -->
+<a href="https://ultron3000.github.io/ultron/the-secret-of-the-shiledars" class="series-card rounded-2xl overflow-hidden bg-white/5 border border-white/10 hover:shadow-indigo-500/20 transition">
+  <div class="aspect-[2/3] overflow-hidden">
+    <img src="https://m.media-amazon.com/images/M/MV5BNjk4MTI0YTUtNTBkYy00NDcyLWIwZGQtMmExYWJkNmM1ZTg1XkEyXkFqcGc@._V1_.jpg" class="w-full h-full object-cover">
+  </div>
+  <div class="p-4">
+    <h3 class="font-semibold text-sm">The Secret of the Shiledars</h3>
+    <p class="text-xs text-gray-400">Season 1</p>
+    <div class="mt-3 h-1.5 bg-white/10 rounded-full">
+      <div class="h-1.5 bg-gradient-to-r from-indigo-500 to-purple-500 w-[75%] rounded-full"></div>
+    </div>
+  </div>
+</a>
+
+<!-- Dharavi Bank -->
+<a href="https://ultron3000.github.io/ultron/dharavi-bank" class="series-card rounded-2xl overflow-hidden bg-white/5 border border-white/10 hover:shadow-indigo-500/20 transition">
+  <div class="aspect-[2/3] overflow-hidden">
+    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/3e54d5159925827.63a98de79a75c.jpg" class="w-full h-full object-cover">
+  </div>
+  <div class="p-4">
+    <h3 class="font-semibold text-sm">Dharavi Bank</h3>
+    <p class="text-xs text-gray-400">Season 1</p>
+    <div class="mt-3 h-1.5 bg-white/10 rounded-full">
+      <div class="h-1.5 bg-gradient-to-r from-indigo-500 to-purple-500 w-[75%] rounded-full"></div>
+    </div>
+  </div>
+</a>
+
+<!-- The Kashmir Files Unreported -->
+<a href="https://ultron3000.github.io/ultron/the-kashmir-files-unreported" class="series-card rounded-2xl overflow-hidden bg-white/5 border border-white/10 hover:shadow-indigo-500/20 transition">
+  <div class="aspect-[2/3] overflow-hidden">
+    <img src="https://idiva-media.ilnmedia.com/content/2023/Aug/amp-1_64d5e94537b2b.jpg?w=414&h=276&cc=1" class="w-full h-full object-cover">
+  </div>
+  <div class="p-4">
+    <h3 class="font-semibold text-sm">The Kashmir Files Unreported</h3>
+    <p class="text-xs text-gray-400">Season 1</p>
+    <div class="mt-3 h-1.5 bg-white/10 rounded-full">
+      <div class="h-1.5 bg-gradient-to-r from-indigo-500 to-purple-500 w-[75%] rounded-full"></div>
+    </div>
+  </div>
+</a>
+
+<!-- The Bastards of Bollywood -->
+<a href="https://ultron3000.github.io/ultron/the-bastards-of-bollywood" class="series-card rounded-2xl overflow-hidden bg-white/5 border border-white/10 hover:shadow-indigo-500/20 transition">
+  <div class="aspect-[2/3] overflow-hidden">
+    <img src="https://imgengine.khaleejtimes.com/khaleejtimes-english/2025-09-18/859l52ct/123939820.jpeg?width=600&height=400&format=auto" class="w-full h-full object-cover">
+  </div>
+  <div class="p-4">
+    <h3 class="font-semibold text-sm">The Bastards of Bollywood</h3>
+    <p class="text-xs text-gray-400">Season 1</p>
+    <div class="mt-3 h-1.5 bg-white/10 rounded-full">
+      <div class="h-1.5 bg-gradient-to-r from-indigo-500 to-purple-500 w-[75%] rounded-full"></div>
+    </div>
+  </div>
+</a>
 
 
-  <!-- Grid Container -->
-  <div class="max-w-7xl mx-auto px-4 pb-20">
 
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-
-      <!-- CARD TEMPLATE START -->
-    <a href="https://ultron3000.github.io/ultron/rocket-boys" class="web-series-card flex bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer hover:shadow-md transition-shadow">
-        <div class="w-24 h-24 sm:w-28 sm:h-28 overflow-hidden rounded-l-xl">
-          <img src="https://wallpapercat.com/w/full/0/0/0/5814393.jpg" alt="Rocket Boys" class="w-full h-full object-cover">
-        </div>
-        <div class="p-3 flex flex-col justify-center flex-1">
-          <h3 class="font-medium text-sm sm:text-base">Rocket Boys</h3>
-          <p class="text-xs text-gray-500 mt-1">Sony Liv • 2 Seasons</p>
-          <div class="flex items-center mt-2">
-            <div class="w-full bg-gray-200 rounded-full h-1.5">
-              <div class="bg-primary h-1.5 rounded-full" style="width: 75%"></div>
-            </div>
-            <span class="text-xs text-gray-500 ml-2">75%</span>
-          </div>
-        </div>
-      </a>
-      <a href="https://ultron3000.github.io/ultron/real-kashmir-football-club" class="web-series-card flex bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer hover:shadow-md transition-shadow">
-        <div class="w-24 h-24 sm:w-28 sm:h-28 overflow-hidden rounded-l-xl">
-          <img src="https://images.slivcdn.com/videoasset_images/blitz_assets/1090496867/landscapeThumb/1765178394016_./RKFC_2_Landscape_Thumb.jpg?w=1000&q=low" alt="Special Ops" class="w-full h-full object-cover">
-        </div>
-        <div class="p-3 flex flex-col justify-center flex-1">
-          <h3 class="font-medium text-sm sm:text-base">Real Kashmir Football Club</h3>
-          <p class="text-xs text-gray-500 mt-1">Sony LIV • 1 Seasons</p>
-          <div class="flex items-center mt-2">
-            <div class="w-full bg-gray-200 rounded-full h-1.5">
-              <div class="bg-primary h-1.5 rounded-full" style="width: 75%"></div>
-            </div>
-            <span class="text-xs text-gray-500 ml-2">75%</span>
-          </div>
-        </div>
-      </a>
-      <a href="https://ultron3000.github.io/ultron/special-ops" class="web-series-card flex bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer hover:shadow-md transition-shadow">
-        <div class="w-24 h-24 sm:w-28 sm:h-28 overflow-hidden rounded-l-xl">
-          <img src="https://www.bizasialive.com/wp-content/uploads/2020/02/specialops001.jpg" alt="Special Ops" class="w-full h-full object-cover">
-        </div>
-        <div class="p-3 flex flex-col justify-center flex-1">
-          <h3 class="font-medium text-sm sm:text-base">Special Ops</h3>
-          <p class="text-xs text-gray-500 mt-1">Hotstar Specials • 3 Seasons</p>
-          <div class="flex items-center mt-2">
-            <div class="w-full bg-gray-200 rounded-full h-1.5">
-              <div class="bg-primary h-1.5 rounded-full" style="width: 75%"></div>
-            </div>
-            <span class="text-xs text-gray-500 ml-2">75%</span>
-          </div>
-        </div>
-      </a>
-      <a href="https://ultron3000.github.io/ultron/shoorveer" class="web-series-card flex bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer hover:shadow-md transition-shadow">
-        <div class="w-24 h-24 sm:w-28 sm:h-28 overflow-hidden rounded-l-xl">
-          <img src="https://img10.hotstar.com/image/upload/f_auto/sources/r1/cms/prod/1817/1706697671817-i" alt="Shoorveer" class="w-full h-full object-cover">
-        </div>
-        <div class="p-3 flex flex-col justify-center flex-1">
-          <h3 class="font-medium text-sm sm:text-base">Shoorveer</h3>
-          <p class="text-xs text-gray-500 mt-1">Season 1</p>
-          <div class="flex items-center mt-2">
-            <div class="w-full bg-gray-200 rounded-full h-1.5">
-              <div class="bg-primary h-1.5 rounded-full" style="width: 75%"></div>
-            </div>
-            <span class="text-xs text-gray-500 ml-2">75%</span>
-          </div>
-        </div>
-      </a>
-      <a href="https://ultron3000.github.io/ultron/inspector-avinash" class="web-series-card flex bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer hover:shadow-md transition-shadow">
-        <div class="w-24 h-24 sm:w-28 sm:h-28 overflow-hidden rounded-l-xl">
-          <img src="https://image.tmdb.org/t/p/original/cyX4lDfLOtejavCY5PbtRlk4C63.jpg" alt="Inspector Avinash" class="w-full h-full object-cover">
-        </div>
-        <div class="p-3 flex flex-col justify-center flex-1">
-          <h3 class="font-medium text-sm sm:text-base">Inspector Avinash</h3>
-          <p class="text-xs text-gray-500 mt-1">Season 1</p>
-          <div class="flex items-center mt-2">
-            <div class="w-full bg-gray-200 rounded-full h-1.5">
-              <div class="bg-primary h-1.5 rounded-full" style="width: 75%"></div>
-            </div>
-            <span class="text-xs text-gray-500 ml-2">75%</span>
-          </div>
-        </div>
-      </a>
-      <a href="https://ultron3000.github.io/hindiseries/avrodh" class="web-series-card flex bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer hover:shadow-md transition-shadow">
-        <div class="w-24 h-24 sm:w-28 sm:h-28 overflow-hidden rounded-l-xl">
-          <img src="https://m.media-amazon.com/images/M/MV5BZjUyODVmNGItYjZkNy00ZmExLWEyYzQtZWZmOGE3ZTc0NjhhXkEyXkFqcGc@._V1_.jpg" alt="Avrodh: The Siege Within" class="w-full h-full object-cover">
-        </div>
-        <div class="p-3 flex flex-col justify-center flex-1">
-          <h3 class="font-medium text-sm sm:text-base">Avrodh: The Siege Within</h3>
-          <p class="text-xs text-gray-500 mt-1">Sony Liv • 2 Seasons</p>
-          <div class="flex items-center mt-2">
-            <div class="w-full bg-gray-200 rounded-full h-1.5">
-              <div class="bg-primary h-1.5 rounded-full" style="width: 75%"></div>
-            </div>
-            <span class="text-xs text-gray-500 ml-2">75%</span>
-          </div>
-        </div>
-      </a>
-      <a href="https://ultron3000.github.io/ultron/kurukshetra" class="web-series-card flex bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer hover:shadow-md transition-shadow">
-        <div class="w-24 h-24 sm:w-28 sm:h-28 overflow-hidden rounded-l-xl">
-          <img src="https://images.filmibeat.com/img/2025/10/kurukshetrareleasedated-1759299342.jpg" alt="Avrodh: The Siege Within" class="w-full h-full object-cover">
-        </div>
-        <div class="p-3 flex flex-col justify-center flex-1">
-          <h3 class="font-medium text-sm sm:text-base">Kurukshetra</h3>
-          <p class="text-xs text-gray-500 mt-1">Season 1</p>
-          <div class="flex items-center mt-2">
-            <div class="w-full bg-gray-200 rounded-full h-1.5">
-              <div class="bg-primary h-1.5 rounded-full" style="width: 75%"></div>
-            </div>
-            <span class="text-xs text-gray-500 ml-2">75%</span>
-          </div>
-        </div>
-      </a>
-      <a href="https://ultron3000.github.io/ultron/the-family-man.html" class="web-series-card flex bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer hover:shadow-md transition-shadow">
-        <div class="w-24 h-24 sm:w-28 sm:h-28 overflow-hidden rounded-l-xl">
-          <img src="https://images.ottplay.com/articles/2021q2/The_Family_Man_Seaso_OTTplay_critics_cover_image_1_118.jpeg" alt="Avrodh: The Siege Within" class="w-full h-full object-cover">
-        </div>
-        <div class="p-3 flex flex-col justify-center flex-1">
-          <h3 class="font-medium text-sm sm:text-base">The Family Man</h3>
-          <p class="text-xs text-gray-500 mt-1">2 Seasons</p>
-          <div class="flex items-center mt-2">
-            <div class="w-full bg-gray-200 rounded-full h-1.5">
-              <div class="bg-primary h-1.5 rounded-full" style="width: 75%"></div>
-            </div>
-            <span class="text-xs text-gray-500 ml-2">75%</span>
-          </div>
-        </div>
-      </a>
-      <a href="https://ultron3000.github.io/ultron/panchayat" class="web-series-card flex bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer hover:shadow-md transition-shadow">
-        <div class="w-24 h-24 sm:w-28 sm:h-28 overflow-hidden rounded-l-xl">
-          <img src="https://m.media-amazon.com/images/M/MV5BYjIxNDA2MjMtZWQ5ZS00ZjA5LTljMzYtYTBhODRkZDk0NGYyXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Avrodh: The Siege Within" class="w-full h-full object-cover">
-        </div>
-        <div class="p-3 flex flex-col justify-center flex-1">
-          <h3 class="font-medium text-sm sm:text-base">Panchayat</h3>
-          <p class="text-xs text-gray-500 mt-1">4 Seasons</p>
-          <div class="flex items-center mt-2">
-            <div class="w-full bg-gray-200 rounded-full h-1.5">
-              <div class="bg-primary h-1.5 rounded-full" style="width: 75%"></div>
-            </div>
-            <span class="text-xs text-gray-500 ml-2">75%</span>
-          </div>
-        </div>
-      </a>
-      <a href="https://ultron3000.github.io/ultron/bhaukaal" class="web-series-card flex bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer hover:shadow-md transition-shadow">
-        <div class="w-24 h-24 sm:w-28 sm:h-28 overflow-hidden rounded-l-xl">
-          <img src="https://qqcdnpictest.mxplay.com/pic/775ad3b682fde6a608559a60986b230d/en/16x9/1600x900/test_pic1726242963844.jpg" alt="Avrodh: The Siege Within" class="w-full h-full object-cover">
-        </div>
-        <div class="p-3 flex flex-col justify-center flex-1">
-          <h3 class="font-medium text-sm sm:text-base">Bhaukaal</h3>
-          <p class="text-xs text-gray-500 mt-1">2 Seasons</p>
-          <div class="flex items-center mt-2">
-            <div class="w-full bg-gray-200 rounded-full h-1.5">
-              <div class="bg-primary h-1.5 rounded-full" style="width: 75%"></div>
-            </div>
-            <span class="text-xs text-gray-500 ml-2">75%</span>
-          </div>
-        </div>
-      </a>
-      <a href="https://ultron3000.github.io/ultron/the-secret-of-the-shiledars" class="web-series-card flex bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer hover:shadow-md transition-shadow">
-        <div class="w-24 h-24 sm:w-28 sm:h-28 overflow-hidden rounded-l-xl">
-          <img src="https://m.media-amazon.com/images/M/MV5BNjk4MTI0YTUtNTBkYy00NDcyLWIwZGQtMmExYWJkNmM1ZTg1XkEyXkFqcGc@._V1_.jpg" alt="Avrodh: The Siege Within" class="w-full h-full object-cover">
-        </div>
-        <div class="p-3 flex flex-col justify-center flex-1">
-          <h3 class="font-medium text-sm sm:text-base">The Secret of the Shiledars</h3>
-          <p class="text-xs text-gray-500 mt-1">Season 1</p>
-          <div class="flex items-center mt-2">
-            <div class="w-full bg-gray-200 rounded-full h-1.5">
-              <div class="bg-primary h-1.5 rounded-full" style="width: 75%"></div>
-            </div>
-            <span class="text-xs text-gray-500 ml-2">75%</span>
-          </div>
-        </div>
-      </a>
-      <a href="https://ultron3000.github.io/ultron/dharavi-bank" class="web-series-card flex bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer hover:shadow-md transition-shadow">
-        <div class="w-24 h-24 sm:w-28 sm:h-28 overflow-hidden rounded-l-xl">
-          <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/3e54d5159925827.63a98de79a75c.jpg" alt="Avrodh: The Siege Within" class="w-full h-full object-cover">
-        </div>
-        <div class="p-3 flex flex-col justify-center flex-1">
-          <h3 class="font-medium text-sm sm:text-base">Dharavi Bank</h3>
-          <p class="text-xs text-gray-500 mt-1">Season 1</p>
-          <div class="flex items-center mt-2">
-            <div class="w-full bg-gray-200 rounded-full h-1.5">
-              <div class="bg-primary h-1.5 rounded-full" style="width: 75%"></div>
-            </div>
-            <span class="text-xs text-gray-500 ml-2">75%</span>
-          </div>
-        </div>
-      </a>
-      <a href="https://ultron3000.github.io/ultron/the-kashmir-files-unreported" class="web-series-card flex bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer hover:shadow-md transition-shadow">
-        <div class="w-24 h-24 sm:w-28 sm:h-28 overflow-hidden rounded-l-xl">
-          <img src="https://idiva-media.ilnmedia.com/content/2023/Aug/amp-1_64d5e94537b2b.jpg?w=414&h=276&cc=1" alt="Avrodh: The Siege Within" class="w-full h-full object-cover">
-        </div>
-        <div class="p-3 flex flex-col justify-center flex-1">
-          <h3 class="font-medium text-sm sm:text-base">The Kashmir Files Unreported</h3>
-          <p class="text-xs text-gray-500 mt-1">Seasons 1</p>
-          <div class="flex items-center mt-2">
-            <div class="w-full bg-gray-200 rounded-full h-1.5">
-              <div class="bg-primary h-1.5 rounded-full" style="width: 75%"></div>
-            </div>
-            <span class="text-xs text-gray-500 ml-2">75%</span>
-          </div>
-        </div>
-      </a>
-      <a href="https://ultron3000.github.io/ultron/the-bastards-of-bollywood" class="web-series-card flex bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer hover:shadow-md transition-shadow">
-        <div class="w-24 h-24 sm:w-28 sm:h-28 overflow-hidden rounded-l-xl">
-          <img src="https://imgengine.khaleejtimes.com/khaleejtimes-english/2025-09-18/859l52ct/123939820.jpeg?width=600&height=400&format=auto" alt="Avrodh: The Siege Within" class="w-full h-full object-cover">
-        </div>
-        <div class="p-3 flex flex-col justify-center flex-1">
-          <h3 class="font-medium text-sm sm:text-base">The Ba***ds of Bollywood</h3>
-          <p class="text-xs text-gray-500 mt-1">Season 1</p>
-          <div class="flex items-center mt-2">
-            <div class="w-full bg-gray-200 rounded-full h-1.5">
-              <div class="bg-primary h-1.5 rounded-full" style="width: 75%"></div>
-            </div>
-            <span class="text-xs text-gray-500 ml-2">75%</span>
-          </div>
-        </div>
-      </a>
 
     </div>
   </div>
- <script>
-  const searchInput = document.getElementById("searchInput");
-  const cards = document.querySelectorAll(".web-series-card");
 
-  searchInput.addEventListener("input", function () {
-    const query = this.value.toLowerCase();
+  <!-- Search Script -->
+  <script>
+    const searchInput = document.getElementById("searchInput");
+    const cards = document.querySelectorAll(".series-card");
 
-    cards.forEach(card => {
-      const text = card.innerText.toLowerCase();
-      card.style.display = text.includes(query) ? "flex" : "none";
+    searchInput.addEventListener("input", function () {
+      const query = this.value.toLowerCase();
+      cards.forEach(card => {
+        card.style.display = card.innerText.toLowerCase().includes(query)
+          ? "block"
+          : "none";
+      });
     });
-  });
-</script>
-
+  </script>
 
 </body>
 </html>
