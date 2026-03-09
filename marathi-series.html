@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marathi Web Series</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    .series-card:hover img {
+      transform: scale(1.08);
+    }
+    .series-card img {
+      transition: transform 0.45s ease;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-[#0f172a] via-[#020617] to-black text-white">
+
+  <!-- Header -->
+  <header class="py-14 text-center">
+    <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">
+      Marathi Web Series
+    </h1>
+    <p class="text-gray-400 mt-3 text-lg">
+      Watch the best Marathi  series & originals
+    </p>
+  </header>
+
+  <!-- Search -->
+  <div class="max-w-7xl mx-auto px-4 mb-10">
+    <div class="relative max-w-md mx-auto">
+      <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search web series..."
+        class="w-full pl-11 pr-4 py-3 rounded-2xl bg-white/10 backdrop-blur border border-white/10 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white placeholder-gray-400"
+      />
+    </div>
+  </div>
+
+  <!-- Grid -->
+  <div class="max-w-7xl mx-auto px-4 pb-24">
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
+
+      <!-- CARD -->
+<!-- Rocket Boys -->
+<a href="https://ultron3000.github.io/ultron/devkhel" class="series-card rounded-2xl overflow-hidden bg-white/5 border border-white/10 hover:shadow-indigo-500/20 transition">
+  <div class="aspect-[2/3] overflow-hidden">
+    <img src="https://image.tmdb.org/t/p/w500/fGOlVDJSF7hhw2sIQiZksXFhYJJ.jpg" class="w-full h-full object-cover">
+  </div>
+  <div class="p-4">
+    <h3 class="font-semibold text-sm">देवखेळ</h3>
+    <p class="text-xs text-gray-400">ZEE5 • Season 1</p>
+    <div class="mt-3 h-1.5 bg-white/10 rounded-full">
+      <div class="h-1.5 bg-gradient-to-r from-indigo-500 to-purple-500 w-[75%] rounded-full"></div>
+    </div>
+  </div>
+</a>
+
+
+
+
+
+
+    </div>
+  </div>
+
+  <!-- Search Script -->
+  <script>
+    const searchInput = document.getElementById("searchInput");
+    const cards = document.querySelectorAll(".series-card");
+
+    searchInput.addEventListener("input", function () {
+      const query = this.value.toLowerCase();
+      cards.forEach(card => {
+        card.style.display = card.innerText.toLowerCase().includes(query)
+          ? "block"
+          : "none";
+      });
+    });
+  </script>
+
+</body>
+</html>
